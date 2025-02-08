@@ -1,13 +1,13 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Separator } from "@/components/ui/separator";
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
         <div className="max-w-7xl mx-auto">
           <div className="text-center animate-fade-in">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-foreground mb-6">
@@ -34,8 +34,10 @@ const Home = () => {
         </div>
       </section>
 
+      <Separator className="my-8" />
+
       {/* About Section */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-accent/5">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-accent/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
@@ -66,8 +68,10 @@ const Home = () => {
         </div>
       </section>
 
+      <Separator className="my-8" />
+
       {/* Features Grid */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
@@ -102,8 +106,10 @@ const Home = () => {
         </div>
       </section>
 
+      <Separator className="my-8" />
+
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-accent/5">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-accent/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">

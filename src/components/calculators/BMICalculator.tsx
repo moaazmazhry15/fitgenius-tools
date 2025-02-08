@@ -68,7 +68,7 @@ const BMICalculator = () => {
           </div>
         </div>
 
-        <Button onClick={handleCalculate} className="w-full">
+        <Button onClick={handleCalculate} className="w-full btn-modern">
           Calculate BMI
         </Button>
 

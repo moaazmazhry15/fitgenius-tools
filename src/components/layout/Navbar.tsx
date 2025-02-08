@@ -44,7 +44,7 @@ const Navbar = () => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="btn-modern"
             >
               {theme === 'dark' ? (
                 <Sun className="h-[1.2rem] w-[1.2rem]" />
@@ -53,10 +53,10 @@ const Navbar = () => {
               )}
               <span className="sr-only">Toggle theme</span>
             </Button>
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+            <Button variant="outline" className="btn-modern border-primary text-primary hover:bg-primary hover:text-white">
               Sign In
             </Button>
-            <Button className="bg-primary text-white hover:bg-secondary">
+            <Button className="btn-modern bg-primary text-white hover:bg-secondary">
               Get Started
             </Button>
           </div>
@@ -67,7 +67,7 @@ const Navbar = () => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="btn-modern"
             >
               {theme === 'dark' ? (
                 <Sun className="h-[1.2rem] w-[1.2rem]" />
@@ -120,10 +120,10 @@ const Navbar = () => {
                 Resources
               </Link>
               <div className="space-y-2 mt-4">
-                <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-white">
+                <Button variant="outline" className="w-full btn-modern border-primary text-primary hover:bg-primary hover:text-white">
                   Sign In
                 </Button>
-                <Button className="w-full bg-primary text-white hover:bg-secondary">
+                <Button className="w-full btn-modern bg-primary text-white hover:bg-secondary">
                   Get Started
                 </Button>
               </div>

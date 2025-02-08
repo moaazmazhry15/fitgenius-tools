@@ -1,12 +1,16 @@
 
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter, Moon, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/components/theme-provider";
 
 const Footer = () => {
+  const { theme, setTheme } = useTheme();
+
   return (
-    <footer className="bg-dark text-gray-300 py-12 mt-auto">
+    <footer className="bg-black/50 backdrop-blur-lg border-t border-white/10 text-gray-300">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12">
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">FitGenius</h3>
@@ -58,10 +62,10 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Social Links */}
+          {/* Social Links and Theme Toggle */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">Follow Us</h4>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-6">
               <a href="#" className="hover:text-primary transition-colors">
                 <Facebook className="w-6 h-6" />
               </a>
@@ -72,10 +76,20 @@ const Footer = () => {
                 <Twitter className="w-6 h-6" />
               </a>
             </div>
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+        <div className="border-t border-white/10 py-6 text-center">
           <p>&copy; {new Date().getFullYear()} FitGenius. All rights reserved.</p>
         </div>
       </div>

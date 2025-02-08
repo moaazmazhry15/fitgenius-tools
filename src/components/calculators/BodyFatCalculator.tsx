@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -124,9 +123,9 @@ const BodyFatCalculator = () => {
 
         {result !== null && (
           <div className="mt-6 p-4 rounded-lg bg-white/5 text-center">
-            <p className="text-2xl font-bold text-primary mb-2">{result}%</p>
-            <p className="text-gray-400">
-              Your estimated body fat percentage is <span className="text-white">{result}%</span>
+            <p className="text-2xl font-bold text-foreground mb-2">{result.toFixed(1)}%</p>
+            <p className="text-foreground">
+              Your estimated body fat percentage is <span className="font-medium">{result.toFixed(1)}%</span>
             </p>
           </div>
         )}
@@ -136,4 +135,3 @@ const BodyFatCalculator = () => {
 };
 
 export default BodyFatCalculator;
-

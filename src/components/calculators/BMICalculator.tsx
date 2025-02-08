@@ -81,9 +81,9 @@ const BMICalculator = () => {
 
       {result !== null && (
         <div className="mt-6 p-4 rounded-lg bg-white/5 text-center">
-          <p className="text-2xl font-bold text-primary mb-2">{result}</p>
-          <p className="text-gray-400">
-            Category: <span className="text-white">{getBMICategory(result)}</span>
+          <p className="text-2xl font-bold text-foreground mb-2">{result.toFixed(1)}</p>
+          <p className="text-foreground">
+            Category: <span className="font-medium">{getBMICategory(result)}</span>
           </p>
         </div>
       )}
@@ -92,4 +92,3 @@ const BMICalculator = () => {
 };
 
 export default BMICalculator;
-

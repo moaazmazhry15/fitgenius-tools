@@ -108,9 +108,9 @@ const BMRCalculator = () => {
 
         {result !== null && (
           <div className="mt-6 p-4 rounded-lg bg-white/5 text-center">
-            <p className="text-2xl font-bold text-primary mb-2">{result}</p>
-            <p className="text-gray-400">
-              Your Basal Metabolic Rate is <span className="text-white">{result}</span> calories per day
+            <p className="text-2xl font-bold text-foreground mb-2">{Math.round(result)}</p>
+            <p className="text-foreground">
+              Your Basal Metabolic Rate is <span className="font-medium">{Math.round(result)}</span> calories per day
             </p>
           </div>
         )}
@@ -120,4 +120,3 @@ const BMRCalculator = () => {
 };
 
 export default BMRCalculator;
-

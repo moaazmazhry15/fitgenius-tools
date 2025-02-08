@@ -38,50 +38,52 @@ const BMICalculator = () => {
   };
 
   return (
-    <CalculatorLayout
-      title="BMI Calculator"
-      description="Calculate your Body Mass Index (BMI) to assess your weight relative to your height."
-    >
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="weight">Weight (kg)</Label>
-            <Input
-              id="weight"
-              type="number"
-              value={weight}
-              onChange={(e) => setWeight(e.target.value)}
-              placeholder="Enter weight in kg"
-              className="bg-white/5"
-            />
+    <div className="container mx-auto px-4 py-8">
+      <CalculatorLayout
+        title="BMI Calculator"
+        description="Calculate your Body Mass Index (BMI) to assess your weight relative to your height."
+      >
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="weight">Weight (kg)</Label>
+              <Input
+                id="weight"
+                type="number"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                placeholder="Enter weight in kg"
+                className="bg-white/5"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="height">Height (m)</Label>
+              <Input
+                id="height"
+                type="number"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                placeholder="Enter height in meters"
+                className="bg-white/5"
+              />
+            </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="height">Height (m)</Label>
-            <Input
-              id="height"
-              type="number"
-              value={height}
-              onChange={(e) => setHeight(e.target.value)}
-              placeholder="Enter height in meters"
-              className="bg-white/5"
-            />
-          </div>
+
+          <Button onClick={handleCalculate} className="w-full btn-modern">
+            Calculate BMI
+          </Button>
+
+          {result !== null && (
+            <div className="mt-6 p-4 rounded-lg bg-white/5 text-center">
+              <p className="text-2xl font-bold text-primary mb-2">{result}</p>
+              <p className="text-gray-400">
+                Category: <span className="text-white">{getBMICategory(result)}</span>
+              </p>
+            </div>
+          )}
         </div>
-
-        <Button onClick={handleCalculate} className="w-full btn-modern">
-          Calculate BMI
-        </Button>
-
-        {result !== null && (
-          <div className="mt-6 p-4 rounded-lg bg-white/5 text-center">
-            <p className="text-2xl font-bold text-primary mb-2">{result}</p>
-            <p className="text-gray-400">
-              Category: <span className="text-white">{getBMICategory(result)}</span>
-            </p>
-          </div>
-        )}
-      </div>
-    </CalculatorLayout>
+      </CalculatorLayout>
+    </div>
   );
 };
 

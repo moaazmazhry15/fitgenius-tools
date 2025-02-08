@@ -1,16 +1,34 @@
 
 import { useState } from "react";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun, User } from "lucide-react";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../theme-provider";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
+  };
+
+  const handleSignOut = async () => {
+    try {
+      setLoading(true);
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      toast.success("Signed out successfully");
+      navigate("/");
+    } catch (error) {
+      toast.error("Error signing out");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,10 +71,17 @@ const Navbar = () => {
               )}
               <span className="sr-only">Toggle theme</span>
             </Button>
-            <Button variant="outline" className="btn-modern border-primary text-primary hover:bg-primary hover:text-white">
+            <Button 
+              variant="outline" 
+              className="btn-modern border-primary text-primary hover:bg-primary hover:text-white"
+              onClick={() => navigate('/auth')}
+            >
               Sign In
             </Button>
-            <Button className="btn-modern bg-primary text-white hover:bg-secondary">
+            <Button 
+              className="btn-modern bg-primary text-white hover:bg-secondary"
+              onClick={() => navigate('/auth?mode=signup')}
+            >
               Get Started
             </Button>
           </div>
@@ -120,10 +145,17 @@ const Navbar = () => {
                 Resources
               </Link>
               <div className="space-y-2 mt-4">
-                <Button variant="outline" className="w-full btn-modern border-primary text-primary hover:bg-primary hover:text-white">
+                <Button 
+                  variant="outline" 
+                  className="w-full btn-modern border-primary text-primary hover:bg-primary hover:text-white"
+                  onClick={() => navigate('/auth')}
+                >
                   Sign In
                 </Button>
-                <Button className="w-full btn-modern bg-primary text-white hover:bg-secondary">
+                <Button 
+                  className="w-full btn-modern bg-primary text-white hover:bg-secondary"
+                  onClick={() => navigate('/auth?mode=signup')}
+                >
                   Get Started
                 </Button>
               </div>

@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Instagram, Twitter, Youtube } from "lucide-react";
 
@@ -6,7 +5,7 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-dark">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center animate-fade-in">
             <h1 className="text-4xl sm:text-6xl font-bold text-white mb-6">
@@ -30,8 +29,8 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/50">
-        <div className="max-w-7xl mx-auto">
+      <section className="min-h-[80vh] flex items-center px-4 sm:px-6 lg:px-8 bg-black/50">
+        <div className="max-w-7xl mx-auto py-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               Why Choose <span className="text-primary">FitCalcs?</span>
@@ -62,8 +61,8 @@ const Home = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="min-h-[80vh] flex items-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <FeatureCard
               icon={Calculator}
@@ -93,17 +92,6 @@ const Home = () => {
       <footer className="bg-black/50 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12">
-            {/* Tools Section */}
-            <div>
-              <h3 className="text-primary font-semibold mb-4">Tools</h3>
-              <ul className="space-y-2">
-                <li><a href="/tools/bmi" className="text-gray-400 hover:text-primary transition-colors">BMI Calculator</a></li>
-                <li><a href="/tools/tdee" className="text-gray-400 hover:text-primary transition-colors">TDEE Calculator</a></li>
-                <li><a href="/tools/bmr" className="text-gray-400 hover:text-primary transition-colors">BMR Calculator</a></li>
-                <li><a href="/tools/bodyfat" className="text-gray-400 hover:text-primary transition-colors">Body Fat Calculator</a></li>
-              </ul>
-            </div>
-
             {/* Resources Section */}
             <div>
               <h3 className="text-primary font-semibold mb-4">Resources</h3>
@@ -111,6 +99,7 @@ const Home = () => {
                 <li><a href="/blog" className="text-gray-400 hover:text-primary transition-colors">Blog</a></li>
                 <li><a href="/coaching" className="text-gray-400 hover:text-primary transition-colors">Coaching</a></li>
                 <li><a href="/guides" className="text-gray-400 hover:text-primary transition-colors">Fitness Guides</a></li>
+                <li><a href="/tools" className="text-gray-400 hover:text-primary transition-colors">Tools</a></li>
               </ul>
             </div>
 

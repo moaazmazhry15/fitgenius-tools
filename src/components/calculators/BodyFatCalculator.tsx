@@ -18,22 +18,30 @@ const BodyFatCalculator = () => {
   const { toast } = useToast();
 
   const handleCalculate = () => {
-    const waistNum = parseFloat(waist);
-    const neckNum = parseFloat(neck);
-    const heightNum = parseFloat(height);
-    const hipNum = gender === "female" ? parseFloat(hip) : undefined;
+    try {
+      const waistNum = parseFloat(waist);
+      const neckNum = parseFloat(neck);
+      const heightNum = parseFloat(height);
+      const hipNum = gender === "female" ? parseFloat(hip) : undefined;
 
-    if (!waistNum || !neckNum || !heightNum || (gender === "female" && !hipNum)) {
+      if (!waistNum || !neckNum || !heightNum || (gender === "female" && !hipNum)) {
+        toast({
+          title: "Error",
+          description: "Please enter valid values for all required fields",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const bodyFat = calculateBodyFat(waistNum, neckNum, heightNum, gender, hipNum);
+      setResult(bodyFat);
+    } catch (error) {
       toast({
         title: "Error",
-        description: "Please enter valid values for all required fields",
+        description: error instanceof Error ? error.message : "An error occurred",
         variant: "destructive",
       });
-      return;
     }
-
-    const bodyFat = calculateBodyFat(waistNum, neckNum, heightNum, gender, hipNum);
-    setResult(bodyFat);
   };
 
   return (
@@ -128,3 +136,4 @@ const BodyFatCalculator = () => {
 };
 
 export default BodyFatCalculator;
+

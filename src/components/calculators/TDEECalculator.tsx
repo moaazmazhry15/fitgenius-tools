@@ -19,22 +19,30 @@ const TDEECalculator = () => {
   const { toast } = useToast();
 
   const handleCalculate = () => {
-    const weightNum = parseFloat(weight);
-    const heightNum = parseFloat(height);
-    const ageNum = parseInt(age);
+    try {
+      const weightNum = parseFloat(weight);
+      const heightNum = parseFloat(height);
+      const ageNum = parseInt(age);
 
-    if (!weightNum || !heightNum || !ageNum) {
+      if (!weightNum || !heightNum || !ageNum) {
+        toast({
+          title: "Error",
+          description: "Please enter valid values for all fields",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const bmr = calculateBMR(weightNum, heightNum, ageNum, gender);
+      const tdee = calculateTDEE(bmr, activityLevel);
+      setResult(tdee);
+    } catch (error) {
       toast({
         title: "Error",
-        description: "Please enter valid values for all fields",
+        description: error instanceof Error ? error.message : "An error occurred",
         variant: "destructive",
       });
-      return;
     }
-
-    const bmr = calculateBMR(weightNum, heightNum, ageNum, gender);
-    const tdee = calculateTDEE(bmr, activityLevel);
-    setResult(tdee);
   };
 
   return (
@@ -131,3 +139,4 @@ const TDEECalculator = () => {
 };
 
 export default TDEECalculator;
+

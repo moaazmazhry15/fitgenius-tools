@@ -1,17 +1,73 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Moon, Sun, User } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../theme-provider";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+
+interface Profile {
+  username: string | null;
+  avatar_url: string | null;
+}
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [session, setSession] = useState<any>(null);
+  const [profile, setProfile] = useState<Profile>({
+    username: null,
+    avatar_url: null,
+  });
+
+  useEffect(() => {
+    // Fetch initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (session?.user) {
+        getProfile(session.user.id);
+      }
+    });
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      if (session?.user) {
+        getProfile(session.user.id);
+      } else {
+        setProfile({ username: null, avatar_url: null });
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const getProfile = async (userId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("username, avatar_url")
+        .eq("id", userId)
+        .single();
+
+      if (error) throw error;
+      if (data) setProfile(data);
+    } catch (error: any) {
+      console.error("Error loading user data:", error.message);
+    }
+  };
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -71,19 +127,60 @@ const Navbar = () => {
               )}
               <span className="sr-only">Toggle theme</span>
             </Button>
-            <Button 
-              variant="outline" 
-              className="btn-modern border-primary text-primary hover:bg-primary hover:text-white"
-              onClick={() => navigate('/auth')}
-            >
-              Sign In
-            </Button>
-            <Button 
-              className="btn-modern bg-primary text-white hover:bg-secondary"
-              onClick={() => navigate('/auth?mode=signup')}
-            >
-              Get Started
-            </Button>
+
+            {session ? (
+              <div className="flex items-center gap-4">
+                <Link 
+                  to="/dashboard" 
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  Dashboard
+                </Link>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={profile.avatar_url || undefined} alt={profile.username || "User"} />
+                        <AvatarFallback>
+                          <User className="h-4 w-4" />
+                        </AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem 
+                      className="flex items-center gap-2"
+                      onClick={() => navigate('/dashboard')}
+                    >
+                      {profile.username || session.user.email}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem 
+                      className="text-red-500 focus:text-red-500" 
+                      onClick={handleSignOut}
+                      disabled={loading}
+                    >
+                      {loading ? "Signing out..." : "Sign out"}
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            ) : (
+              <div className="flex items-center gap-4">
+                <Button 
+                  variant="outline" 
+                  className="btn-modern border-primary text-primary hover:bg-primary hover:text-white"
+                  onClick={() => navigate('/auth')}
+                >
+                  Sign In
+                </Button>
+                <Button 
+                  className="btn-modern bg-primary text-white hover:bg-secondary"
+                  onClick={() => navigate('/auth?mode=signup')}
+                >
+                  Get Started
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -144,20 +241,45 @@ const Navbar = () => {
               >
                 Resources
               </Link>
+              {session && (
+                <Link
+                  to="/dashboard"
+                  className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
+                >
+                  Dashboard
+                </Link>
+              )}
               <div className="space-y-2 mt-4">
-                <Button 
-                  variant="outline" 
-                  className="w-full btn-modern border-primary text-primary hover:bg-primary hover:text-white"
-                  onClick={() => navigate('/auth')}
-                >
-                  Sign In
-                </Button>
-                <Button 
-                  className="w-full btn-modern bg-primary text-white hover:bg-secondary"
-                  onClick={() => navigate('/auth?mode=signup')}
-                >
-                  Get Started
-                </Button>
+                {session ? (
+                  <>
+                    <div className="px-3 py-2 text-foreground">
+                      {profile.username || session.user.email}
+                    </div>
+                    <Button
+                      className="w-full btn-modern bg-red-500 text-white hover:bg-red-600"
+                      onClick={handleSignOut}
+                      disabled={loading}
+                    >
+                      {loading ? "Signing out..." : "Sign out"}
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button 
+                      variant="outline" 
+                      className="w-full btn-modern border-primary text-primary hover:bg-primary hover:text-white"
+                      onClick={() => navigate('/auth')}
+                    >
+                      Sign In
+                    </Button>
+                    <Button 
+                      className="w-full btn-modern bg-primary text-white hover:bg-secondary"
+                      onClick={() => navigate('/auth?mode=signup')}
+                    >
+                      Get Started
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>

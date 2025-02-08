@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
+import { Card } from "@/components/ui/card";
 
 const Home = () => {
   return (
@@ -82,26 +83,40 @@ const Home = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            <FeatureCard
-              icon={Calculator}
-              title="BMI Calculator"
-              description="Calculate your Body Mass Index instantly"
-            />
-            <FeatureCard
-              icon={Activity}
-              title="BMR Calculator"
-              description="Find your Basal Metabolic Rate"
-            />
-            <FeatureCard
-              icon={Weight}
-              title="TDEE Calculator"
-              description="Total Daily Energy Expenditure"
-            />
-            <FeatureCard
-              icon={Heart}
-              title="Body Fat Calculator"
-              description="Estimate your body fat percentage"
-            />
+            {[
+              {
+                icon: Calculator,
+                title: "BMI Calculator",
+                description: "Calculate your Body Mass Index instantly",
+                path: "/calculators/bmi"
+              },
+              {
+                icon: Activity,
+                title: "BMR Calculator",
+                description: "Find your Basal Metabolic Rate",
+                path: "/calculators/bmr"
+              },
+              {
+                icon: Weight,
+                title: "TDEE Calculator",
+                description: "Total Daily Energy Expenditure",
+                path: "/calculators/tdee"
+              },
+              {
+                icon: Heart,
+                title: "Body Fat Calculator",
+                description: "Estimate your body fat percentage",
+                path: "/calculators/bodyfat"
+              }
+            ].map(({ icon: Icon, title, description, path }) => (
+              <Link key={title} to={path}>
+                <FeatureCard
+                  icon={Icon}
+                  title={title}
+                  description={description}
+                />
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -163,13 +178,15 @@ const TestimonialCard = ({ quote, author, role, rating }: { quote: string; autho
 );
 
 const FeatureCard = ({ icon: Icon, title, description }: { icon: any; title: string; description: string }) => (
-  <div className="p-6 rounded-xl bg-card border border-border">
+  <Card
+    className="p-6 rounded-xl bg-card border border-border hover:bg-accent/5 transition-colors cursor-pointer hover:scale-105 transform duration-200"
+  >
     <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
       <Icon className="w-6 h-6 text-primary" />
     </div>
     <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
     <p className="text-muted-foreground">{description}</p>
-  </div>
+  </Card>
 );
 
 const AboutCard = ({ icon: Icon, title, description }: { icon: any; title: string; description: string }) => (

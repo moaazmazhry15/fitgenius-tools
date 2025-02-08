@@ -12,6 +12,10 @@ import Blog from "./pages/Blog";
 import Coaching from "./pages/Coaching";
 import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
+import BMICalculator from "./components/calculators/BMICalculator";
+import BMRCalculator from "./components/calculators/BMRCalculator";
+import TDEECalculator from "./components/calculators/TDEECalculator";
+import BodyFatCalculator from "./components/calculators/BodyFatCalculator";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +31,10 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/tools" element={<Tools />} />
+              <Route path="/calculators/bmi" element={<BMICalculator />} />
+              <Route path="/calculators/bmr" element={<BMRCalculator />} />
+              <Route path="/calculators/tdee" element={<TDEECalculator />} />
+              <Route path="/calculators/bodyfat" element={<BodyFatCalculator />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/coaching" element={<Coaching />} />
               <Route path="/resources" element={<Resources />} />

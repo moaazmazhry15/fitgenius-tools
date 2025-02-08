@@ -1,15 +1,10 @@
 
 import { Calculator, Activity, Weight, Heart } from "lucide-react";
-import { useState } from "react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import BMICalculator from "@/components/calculators/BMICalculator";
-import BMRCalculator from "@/components/calculators/BMRCalculator";
-import TDEECalculator from "@/components/calculators/TDEECalculator";
-import BodyFatCalculator from "@/components/calculators/BodyFatCalculator";
+import { useNavigate } from "react-router-dom";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const Tools = () => {
-  const [activeCalculator, setActiveCalculator] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const calculators = [
     {
@@ -17,34 +12,30 @@ const Tools = () => {
       title: "BMI Calculator",
       description: "Calculate your Body Mass Index to understand your weight relative to your height.",
       icon: Calculator,
-      component: BMICalculator
+      path: "/calculators/bmi"
     },
     {
       id: "bmr",
       title: "BMR Calculator",
       description: "Find your Basal Metabolic Rate to understand your daily caloric needs.",
       icon: Activity,
-      component: BMRCalculator
+      path: "/calculators/bmr"
     },
     {
       id: "tdee",
       title: "TDEE Calculator",
       description: "Calculate your Total Daily Energy Expenditure for optimal nutrition planning.",
       icon: Weight,
-      component: TDEECalculator
+      path: "/calculators/tdee"
     },
     {
       id: "bodyfat",
       title: "Body Fat Calculator",
       description: "Estimate your body fat percentage using various measurement methods.",
       icon: Heart,
-      component: BodyFatCalculator
+      path: "/calculators/bodyfat"
     }
   ];
-
-  const handleCalculatorSelect = (calculatorId: string) => {
-    setActiveCalculator(calculatorId === activeCalculator ? null : calculatorId);
-  };
 
   return (
     <div className="min-h-screen bg-background pt-16 md:pt-24">
@@ -59,10 +50,11 @@ const Tools = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-          {calculators.map(({ id, title, description, icon: Icon, component: Calculator }) => (
+          {calculators.map(({ id, title, description, icon: Icon, path }) => (
             <Card
               key={id}
-              className="bg-card border-border hover:bg-accent/5 transition-colors"
+              className="bg-card border-border hover:bg-accent/5 transition-colors cursor-pointer hover:scale-105 transform duration-200"
+              onClick={() => navigate(path)}
             >
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -71,19 +63,6 @@ const Tools = () => {
                 <CardTitle className="text-foreground">{title}</CardTitle>
                 <CardDescription className="text-muted-foreground">{description}</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <Button
-                  className="w-full"
-                  onClick={() => handleCalculatorSelect(id)}
-                >
-                  {activeCalculator === id ? "Hide Calculator" : "Show Calculator"}
-                </Button>
-                {activeCalculator === id && (
-                  <div className="mt-6 animate-fade-in">
-                    <Calculator />
-                  </div>
-                )}
-              </CardContent>
             </Card>
           ))}
         </div>

@@ -16,6 +16,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
+  const [userEmail, setUserEmail] = useState<string>("");
   const [profile, setProfile] = useState<Profile>({
     username: null,
     avatar_url: null,
@@ -28,6 +29,7 @@ const Dashboard = () => {
         navigate("/auth");
         return;
       }
+      setUserEmail(session.user.email || "");
       await getProfile();
       setLoading(false);
     };
@@ -105,7 +107,7 @@ const Dashboard = () => {
               <Input
                 id="email"
                 type="text"
-                value={supabase.auth.getSession().then(({ data: { session } }) => session?.user?.email)}
+                value={userEmail}
                 disabled
                 className="bg-muted"
               />

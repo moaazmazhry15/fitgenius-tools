@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Instagram, Twitter, Youtube } from "lucide-react";
+import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Instagram, Twitter, Youtube, Star, Quote } from "lucide-react";
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-dark">
       {/* Hero Section */}
-      <section className="h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <section className="h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center animate-fade-in">
             <h1 className="text-4xl sm:text-6xl font-bold text-white mb-6">
@@ -29,7 +29,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="min-h-[80vh] flex items-center px-4 sm:px-6 lg:px-8 bg-black/50">
+      <section className="h-[60vh] flex items-center px-4 sm:px-6 lg:px-8 bg-black/50">
         <div className="max-w-7xl mx-auto py-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -61,7 +61,7 @@ const Home = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="min-h-[80vh] flex items-center px-4 sm:px-6 lg:px-8">
+      <section className="h-[60vh] flex items-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <FeatureCard
@@ -88,11 +88,45 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="h-[60vh] flex items-center px-4 sm:px-6 lg:px-8 bg-black/50">
+        <div className="max-w-7xl mx-auto py-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              What Our <span className="text-primary">Users Say</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Join thousands of satisfied users who have transformed their fitness journey with FitCalcs.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <TestimonialCard
+              quote="The calculators are so accurate and easy to use. They've helped me stay on track with my fitness goals!"
+              author="Sarah Mitchell"
+              role="Fitness Enthusiast"
+              rating={5}
+            />
+            <TestimonialCard
+              quote="As a personal trainer, I recommend FitCalcs to all my clients. It's an invaluable tool for tracking progress."
+              author="Mike Johnson"
+              role="Personal Trainer"
+              rating={5}
+            />
+            <TestimonialCard
+              quote="The TDEE calculator helped me understand my nutritional needs. I've lost 20 pounds using these tools!"
+              author="Emily Roberts"
+              role="Weight Loss Success"
+              rating={5}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-black/50 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12">
-            {/* Resources Section */}
             <div>
               <h3 className="text-primary font-semibold mb-4">Resources</h3>
               <ul className="space-y-2">
@@ -103,7 +137,6 @@ const Home = () => {
               </ul>
             </div>
 
-            {/* Company Section */}
             <div>
               <h3 className="text-primary font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
@@ -113,7 +146,6 @@ const Home = () => {
               </ul>
             </div>
 
-            {/* Social & Newsletter Section */}
             <div>
               <h3 className="text-primary font-semibold mb-4">Connect With Us</h3>
               <div className="flex space-x-4 mb-6">
@@ -130,7 +162,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Copyright Section */}
           <div className="border-t border-white/10 py-6 text-center">
             <p className="text-gray-400 text-sm">
               © {new Date().getFullYear()} FitCalcs. All Rights Reserved.
@@ -141,6 +172,22 @@ const Home = () => {
     </div>
   );
 };
+
+const TestimonialCard = ({ quote, author, role, rating }: { quote: string; author: string; role: string; rating: number }) => (
+  <div className="p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover-scale">
+    <div className="mb-4">
+      <Quote className="w-8 h-8 text-primary opacity-50" />
+    </div>
+    <p className="text-gray-300 mb-4 italic">{quote}</p>
+    <div className="flex items-center justify-center mb-2">
+      {[...Array(rating)].map((_, i) => (
+        <Star key={i} className="w-4 h-4 text-primary" fill="currentColor" />
+      ))}
+    </div>
+    <h4 className="text-white font-semibold">{author}</h4>
+    <p className="text-gray-400 text-sm">{role}</p>
+  </div>
+);
 
 const FeatureCard = ({ icon: Icon, title, description }: { icon: any; title: string; description: string }) => (
   <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover-scale">

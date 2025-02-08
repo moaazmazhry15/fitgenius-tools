@@ -34,7 +34,7 @@ const Auth = () => {
         });
         if (error) throw error;
         toast.success("Signed in successfully!");
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (error: any) {
       toast.error(error.message);

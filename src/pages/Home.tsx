@@ -28,34 +28,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <FeatureCard
-              icon={Calculator}
-              title="BMI Calculator"
-              description="Calculate your Body Mass Index instantly"
-            />
-            <FeatureCard
-              icon={Activity}
-              title="BMR Calculator"
-              description="Find your Basal Metabolic Rate"
-            />
-            <FeatureCard
-              icon={Weight}
-              title="TDEE Calculator"
-              description="Total Daily Energy Expenditure"
-            />
-            <FeatureCard
-              icon={Heart}
-              title="Body Fat Calculator"
-              description="Estimate your body fat percentage"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* About Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -83,6 +55,34 @@ const Home = () => {
               icon={Trophy}
               title="Proven Results"
               description="Science-based calculations and methods that deliver real results."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <FeatureCard
+              icon={Calculator}
+              title="BMI Calculator"
+              description="Calculate your Body Mass Index instantly"
+            />
+            <FeatureCard
+              icon={Activity}
+              title="BMR Calculator"
+              description="Find your Basal Metabolic Rate"
+            />
+            <FeatureCard
+              icon={Weight}
+              title="TDEE Calculator"
+              description="Total Daily Energy Expenditure"
+            />
+            <FeatureCard
+              icon={Heart}
+              title="Body Fat Calculator"
+              description="Estimate your body fat percentage"
             />
           </div>
         </div>

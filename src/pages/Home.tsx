@@ -69,6 +69,14 @@ const Home = () => {
       {/* Features Grid */}
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Our <span className="text-primary">Fitness Tools</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+              Explore our comprehensive suite of fitness calculators designed to help you track, measure, and achieve your health and fitness goals with precision and ease.
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             <FeatureCard
               icon={Calculator}

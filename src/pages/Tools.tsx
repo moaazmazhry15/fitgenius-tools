@@ -47,39 +47,39 @@ const Tools = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dark pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+    <div className="min-h-screen bg-background pt-16 md:pt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
             Fitness <span className="text-primary">Calculators</span>
           </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Use our precision tools to track your health, set goals, and optimize your fitness journey.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           {calculators.map(({ id, title, description, icon: Icon, component: Calculator }) => (
             <Card
               key={id}
-              className="bg-white/5 border-white/10 text-white hover:bg-white/10 transition-colors"
+              className="bg-card border-border hover:bg-accent/5 transition-colors"
             >
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
-                <CardTitle>{title}</CardTitle>
-                <CardDescription className="text-gray-400">{description}</CardDescription>
+                <CardTitle className="text-foreground">{title}</CardTitle>
+                <CardDescription className="text-muted-foreground">{description}</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
                 <Button
-                  className="w-full bg-primary hover:bg-secondary"
+                  className="w-full"
                   onClick={() => handleCalculatorSelect(id)}
                 >
                   {activeCalculator === id ? "Hide Calculator" : "Show Calculator"}
                 </Button>
                 {activeCalculator === id && (
-                  <div className="mt-6">
+                  <div className="mt-6 animate-fade-in">
                     <Calculator />
                   </div>
                 )}

@@ -1,46 +1,52 @@
+
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Instagram, Twitter, Youtube, Star, Quote } from "lucide-react";
+import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-dark">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center animate-fade-in">
-            <h1 className="text-4xl sm:text-6xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-foreground mb-6">
               Optimize Your Fitness with
               <span className="text-primary"> Smart Calculators!</span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Track your health, set goals, and train smarter with FitCalcs.
               Our precision tools help you achieve your fitness goals faster.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button className="bg-primary hover:bg-secondary text-white px-8 py-6 text-lg">
-                Try Free Calculators <ArrowRight className="ml-2" />
-              </Button>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white px-8 py-6 text-lg">
-                Join Online Coaching
-              </Button>
+              <Link to="/tools">
+                <Button className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg">
+                  Try Free Calculators <ArrowRight className="ml-2" />
+                </Button>
+              </Link>
+              <Link to="/coaching">
+                <Button variant="outline" className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg">
+                  Join Online Coaching
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="h-[60vh] flex items-center px-4 sm:px-6 lg:px-8 bg-black/50">
-        <div className="max-w-7xl mx-auto py-20">
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-accent/5">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Why Choose <span className="text-primary">FitCalcs?</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               We combine cutting-edge technology with proven fitness expertise to help you achieve your health and wellness goals.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <AboutCard
               icon={Building}
               title="Expert Team"
@@ -61,9 +67,9 @@ const Home = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="h-[60vh] flex items-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             <FeatureCard
               icon={Calculator}
               title="BMI Calculator"
@@ -89,18 +95,18 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="h-[60vh] flex items-center px-4 sm:px-6 lg:px-8 bg-black/50">
-        <div className="max-w-7xl mx-auto py-20">
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-accent/5">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
               What Our <span className="text-primary">Users Say</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               Join thousands of satisfied users who have transformed their fitness journey with FitCalcs.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <TestimonialCard
               quote="The calculators are so accurate and easy to use. They've helped me stay on track with my fitness goals!"
               author="Sarah Mitchell"
@@ -127,38 +133,38 @@ const Home = () => {
 };
 
 const TestimonialCard = ({ quote, author, role, rating }: { quote: string; author: string; role: string; rating: number }) => (
-  <div className="p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover-scale">
+  <div className="p-6 md:p-8 rounded-xl bg-card border border-border">
     <div className="mb-4">
       <Quote className="w-8 h-8 text-primary opacity-50" />
     </div>
-    <p className="text-gray-300 mb-4 italic">{quote}</p>
+    <p className="text-muted-foreground mb-4 italic">{quote}</p>
     <div className="flex items-center justify-center mb-2">
       {[...Array(rating)].map((_, i) => (
         <Star key={i} className="w-4 h-4 text-primary" fill="currentColor" />
       ))}
     </div>
-    <h4 className="text-white font-semibold">{author}</h4>
-    <p className="text-gray-400 text-sm">{role}</p>
+    <h4 className="text-foreground font-semibold">{author}</h4>
+    <p className="text-muted-foreground text-sm">{role}</p>
   </div>
 );
 
 const FeatureCard = ({ icon: Icon, title, description }: { icon: any; title: string; description: string }) => (
-  <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover-scale">
+  <div className="p-6 rounded-xl bg-card border border-border">
     <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
       <Icon className="w-6 h-6 text-primary" />
     </div>
-    <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
-    <p className="text-gray-400">{description}</p>
+    <h3 className="text-lg font-semibold text-foreground mb-2">{title}</h3>
+    <p className="text-muted-foreground">{description}</p>
   </div>
 );
 
 const AboutCard = ({ icon: Icon, title, description }: { icon: any; title: string; description: string }) => (
-  <div className="p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover-scale">
+  <div className="p-6 md:p-8 rounded-xl bg-card border border-border">
     <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 mx-auto">
       <Icon className="w-6 h-6 text-primary" />
     </div>
-    <h3 className="text-xl font-semibold text-white mb-2 text-center">{title}</h3>
-    <p className="text-gray-400 text-center">{description}</p>
+    <h3 className="text-lg font-semibold text-foreground mb-2 text-center">{title}</h3>
+    <p className="text-muted-foreground text-center">{description}</p>
   </div>
 );
 

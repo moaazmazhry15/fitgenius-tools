@@ -10,12 +10,12 @@ interface CalculatorLayoutProps {
 
 const CalculatorLayout = ({ title, description, children }: CalculatorLayoutProps) => {
   return (
-    <Card className="w-full max-w-2xl mx-auto bg-white/5 border-white/10">
+    <Card className="w-full max-w-2xl mx-auto bg-background border-border">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-white">{title}</CardTitle>
-        <CardDescription className="text-gray-400">{description}</CardDescription>
+        <CardTitle className="text-xl md:text-2xl font-bold text-foreground">{title}</CardTitle>
+        <CardDescription className="text-muted-foreground">{description}</CardDescription>
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      <CardContent className="space-y-4">{children}</CardContent>
     </Card>
   );
 };

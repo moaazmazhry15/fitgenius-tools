@@ -10,11 +10,11 @@ interface CalculatorLayoutProps {
 
 const CalculatorLayout = ({ title, description, children }: CalculatorLayoutProps) => {
   return (
-    <div className="container mx-auto px-4 pt-16 pb-8">
+    <div className="container mx-auto px-4 py-24">
       <Card className="w-full max-w-2xl mx-auto bg-background border-border">
-        <CardHeader>
+        <CardHeader className="pb-8">
           <CardTitle className="text-xl md:text-2xl font-bold text-foreground">{title}</CardTitle>
-          <CardDescription className="text-muted-foreground">{description}</CardDescription>
+          <CardDescription className="text-muted-foreground text-base">{description}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">{children}</CardContent>
       </Card>
@@ -23,4 +23,3 @@ const CalculatorLayout = ({ title, description, children }: CalculatorLayoutProp
 };
 
 export default CalculatorLayout;
-

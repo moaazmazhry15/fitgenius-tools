@@ -18,6 +18,7 @@ interface Profile {
 
 interface Workout {
   id: string;
+  user_id: string;
   workout_date: string;
   workout_type: string;
   duration: number;
@@ -41,12 +42,13 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [userEmail, setUserEmail] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
   const [profile, setProfile] = useState<Profile>({
     username: null,
     avatar_url: null,
   });
   const [workouts, setWorkouts] = useState<Workout[]>([]);
-  const [newWorkout, setNewWorkout] = useState<Omit<Workout, 'id'>>({
+  const [newWorkout, setNewWorkout] = useState<Omit<Workout, 'id' | 'user_id'>>({
     workout_date: format(new Date(), 'yyyy-MM-dd'),
     workout_type: "Strength Training",
     duration: 30,
@@ -62,6 +64,7 @@ const Dashboard = () => {
         return;
       }
       setUserEmail(session.user.email || "");
+      setUserId(session.user.id);
       await Promise.all([getProfile(), fetchWorkouts()]);
       setLoading(false);
     };
@@ -133,9 +136,14 @@ const Dashboard = () => {
 
   const addWorkout = async () => {
     try {
+      const workoutWithUserId = {
+        ...newWorkout,
+        user_id: userId,
+      };
+
       const { error } = await supabase
         .from("workouts")
-        .insert([newWorkout]);
+        .insert([workoutWithUserId]);
 
       if (error) throw error;
       

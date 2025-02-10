@@ -1,1 +1,5 @@
+
 project_id = "eelxtkuiplrwcsfqiqhw"
+
+[functions.handle-meeting-request]
+verify_jwt = false

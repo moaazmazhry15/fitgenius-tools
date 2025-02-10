@@ -34,9 +34,9 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     setLoading(true);
 
     try {
-      const { error } = await supabase
-        .from('meeting_requests')
-        .insert([formData]);
+      const { data, error } = await supabase.functions.invoke('handle-meeting-request', {
+        body: formData
+      });
 
       if (error) throw error;
 

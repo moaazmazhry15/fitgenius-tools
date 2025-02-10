@@ -34,24 +34,14 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     setLoading(true);
 
     try {
-      // Send data directly to n8n webhook
-      const response = await fetch(
-        'https://kabeeryosaf.app.n8n.cloud/webhook-test/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const { data, error } = await supabase.functions.invoke('handle-meeting-request', {
+        body: formData
+      });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
+      if (error) throw error;
 
       toast.success("Meeting request submitted successfully!");
-      onOpenChange(false); // Close the modal
+      onOpenChange(false);
       setFormData({
         name: "",
         email: "",

@@ -52,11 +52,9 @@ const Dashboard = () => {
 
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen w-full">
-        <div className="fixed inset-y-0 left-0 z-50">
-          <DashboardSidebar />
-        </div>
-        <main className="flex-1 ml-64 relative">
+      <div className="flex w-full">
+        <DashboardSidebar />
+        <main className="flex-1 min-h-screen pb-16">
           <div className="container mx-auto px-4 py-24">
             <div className="flex justify-between items-center mb-8 glass-card animate-fade-in">
               <h1 className="text-3xl font-bold text-primary">

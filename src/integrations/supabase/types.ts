@@ -78,6 +78,36 @@ export type Database = {
         }
         Relationships: []
       }
+      meeting_requests: {
+        Row: {
+          created_at: string | null
+          date: string
+          email: string
+          id: string
+          name: string
+          notes: string | null
+          time: string
+        }
+        Insert: {
+          created_at?: string | null
+          date: string
+          email: string
+          id?: string
+          name: string
+          notes?: string | null
+          time: string
+        }
+        Update: {
+          created_at?: string | null
+          date?: string
+          email?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          time?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null

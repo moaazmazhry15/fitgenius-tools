@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ScheduleMeetingFormProps {
   open: boolean;
@@ -33,23 +34,12 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     setLoading(true);
 
     try {
-      console.log("Submitting form data:", formData);
-      
-      // Send form data to webhook without expecting a proper response
-      await fetch(
-        "https://kabeeryosaf.app.n8n.cloud/webhook-test/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1",
-        {
-          method: "POST",
-          mode: "no-cors", 
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const { error } = await supabase
+        .from('meeting_requests')
+        .insert([formData]);
 
-      // If we reach here without throwing, consider it a success
+      if (error) throw error;
+
       toast.success("Meeting request submitted successfully!");
       onOpenChange(false);
       setFormData({

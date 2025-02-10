@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -190,7 +191,7 @@ const TestimonialCard = ({ quote, author, role, rating }: { quote: string; autho
 
 const FeatureCard = ({ icon: Icon, title, description }: { icon: any; title: string; description: string }) => (
   <Card
-    className="p-6 rounded-xl bg-card border border-border hover:bg-accent/5 transition-colors cursor-pointer hover:scale-105 transform duration-200"
+    className="p-6 rounded-xl bg-card border border-border hover:bg-accent/5 transition-colors cursor-pointer hover:scale-105 transform duration-[3000ms]"
   >
     <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
       <Icon className="w-6 h-6 text-primary" />

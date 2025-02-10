@@ -141,6 +141,33 @@ export type Database = {
         }
         Relationships: []
       }
+      workout_tasks: {
+        Row: {
+          created_at: string
+          date: string
+          description: string | null
+          id: string
+          title: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          description?: string | null
+          id?: string
+          title: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          description?: string | null
+          id?: string
+          title?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       workouts: {
         Row: {
           calories_burned: number | null

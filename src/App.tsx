@@ -14,6 +14,7 @@ import Resources from "./pages/Resources";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import Calendar from "./pages/Calendar";
 import BMICalculator from "./components/calculators/BMICalculator";
 import BMRCalculator from "./components/calculators/BMRCalculator";
 import TDEECalculator from "./components/calculators/TDEECalculator";
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/resources" element={<Resources />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/calendar" element={<Calendar />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

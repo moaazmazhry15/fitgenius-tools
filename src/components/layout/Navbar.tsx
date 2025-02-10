@@ -1,5 +1,6 @@
+
 import { useState, useEffect } from "react";
-import { Menu, X, User, Sun, Moon } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { useTheme } from "@/components/theme-provider";
 
 interface Profile {
   username: string | null;
@@ -23,7 +23,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<any>(null);
-  const { theme, setTheme } = useTheme();
   const [profile, setProfile] = useState<Profile>({
     username: null,
     avatar_url: null,
@@ -80,11 +79,6 @@ const Navbar = () => {
     }
   };
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-    toast.success(`Switched to ${theme === "light" ? "dark" : "light"} mode`);
-  };
-
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/50 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -105,15 +99,6 @@ const Navbar = () => {
             <Link to="/resources" className="text-foreground hover:text-primary transition-colors">
               Resources
             </Link>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full"
-            >
-              {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-            </Button>
 
             {session ? (
               <div className="flex items-center gap-4">
@@ -170,15 +155,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="md:hidden flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full"
-            >
-              {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-            </Button>
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-foreground p-2"

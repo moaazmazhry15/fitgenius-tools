@@ -21,8 +21,8 @@ export function ThemeProvider({
   children,
   ...props
 }: ThemeProviderProps) {
-  const value = {
-    theme: "light"
+  const value: ThemeProviderState = {
+    theme: "light" as Theme
   }
 
   return (

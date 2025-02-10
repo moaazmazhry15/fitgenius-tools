@@ -33,21 +33,17 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     setLoading(true);
 
     try {
-      // Method 1: Direct fetch with no-cors mode
-      const response = await fetch(
-        'https://kabeeryosaf.app.n8n.cloud/webhook-test/get-in-touch',
-        {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        }
-      );
+      const response = await fetch("https://kabeeryosaf.app.n8n.cloud/webhook/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*" // Allow any origin temporarily
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // Since no-cors mode returns an opaque response, we can't check status
-      // We'll assume it worked if we got here without an error
+      const data = await response.json();
+      console.log("Success:", data);
       toast.success("Meeting request submitted!");
       onOpenChange(false);
       setFormData({
@@ -58,34 +54,8 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
         notes: "",
       });
     } catch (error) {
-      console.error("Submission error:", error);
-      
-      // Method 2: Try with XMLHttpRequest as fallback
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://kabeeryosaf.app.n8n.cloud/webhook-test/get-in-touch', true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      
-      xhr.onload = function() {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          toast.success("Meeting request submitted successfully!");
-          onOpenChange(false);
-          setFormData({
-            name: "",
-            email: "",
-            date: "",
-            time: "",
-            notes: "",
-          });
-        } else {
-          toast.error("Failed to submit form. Please try again.");
-        }
-      };
-      
-      xhr.onerror = function() {
-        toast.error("Failed to submit form. Please try again.");
-      };
-      
-      xhr.send(JSON.stringify(formData));
+      console.error("Error:", error);
+      toast.error("Failed to submit form. Please try again.");
     } finally {
       setLoading(false);
     }

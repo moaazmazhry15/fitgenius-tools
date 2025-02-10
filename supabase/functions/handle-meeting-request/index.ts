@@ -13,7 +13,8 @@ serve(async (req) => {
   }
 
   try {
-    const { name, email, date, time, notes } = await req.json();
+    const requestData = await req.json();
+    console.log('Received request data:', requestData);
 
     // Forward the data to n8n webhook
     const n8nResponse = await fetch(
@@ -23,16 +24,20 @@ serve(async (req) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, date, time, notes }),
+        body: JSON.stringify(requestData),
       }
     );
 
     if (!n8nResponse.ok) {
+      console.error('n8n webhook failed:', {
+        status: n8nResponse.status,
+        statusText: n8nResponse.statusText,
+      });
       throw new Error(`n8n webhook failed with status ${n8nResponse.status}`);
     }
 
     console.log('Successfully sent data to n8n webhook');
-
+    
     return new Response(
       JSON.stringify({ message: 'Meeting request processed successfully' }),
       {
@@ -43,7 +48,10 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error processing meeting request:', error);
     return new Response(
-      JSON.stringify({ error: 'Failed to process meeting request' }),
+      JSON.stringify({ 
+        error: 'Failed to process meeting request',
+        details: error.message 
+      }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 500,

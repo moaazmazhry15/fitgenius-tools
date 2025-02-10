@@ -1,7 +1,7 @@
 
-import { createContext, useContext } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
-type Theme = "light"
+type Theme = "dark" | "light"
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -9,10 +9,12 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
   theme: Theme
+  setTheme: (theme: Theme) => void
 }
 
 const initialState: ThemeProviderState = {
-  theme: "light"
+  theme: "light",
+  setTheme: () => null
 }
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
@@ -21,9 +23,20 @@ export function ThemeProvider({
   children,
   ...props
 }: ThemeProviderProps) {
-  const value: ThemeProviderState = {
-    theme: "light" as Theme
-  }
+  const [theme, setTheme] = useState<Theme>('light');
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(theme);
+  }, [theme]);
+
+  const value = {
+    theme,
+    setTheme: (theme: Theme) => {
+      setTheme(theme);
+    },
+  };
 
   return (
     <ThemeProviderContext.Provider {...props} value={value}>

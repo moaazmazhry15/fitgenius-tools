@@ -14,8 +14,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { DashboardSidebar } from "@/components/layout/DashboardSidebar";
 import Footer from "@/components/layout/Footer";
 
 interface WorkoutTask {
@@ -71,53 +69,48 @@ export default function CalendarPage() {
   );
 
   return (
-    <SidebarProvider>
-      <div className="flex flex-col min-h-screen w-full">
-        <div className="flex flex-1">
-          <DashboardSidebar />
-          <div className="flex-1 container mx-auto px-4 py-24">
-            <div className="space-y-8">
-              <div className="flex justify-between items-center">
-                <h1 className="text-3xl font-bold text-primary">Workout Calendar</h1>
-                <p className="text-lg text-muted-foreground">
-                  {format(new Date(), "EEEE, MMMM do, yyyy")}
-                </p>
-              </div>
+    <div className="flex flex-col min-h-screen w-full">
+      <div className="flex-1 container mx-auto px-4 py-24">
+        <div className="space-y-8">
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold text-primary">Workout Calendar</h1>
+            <p className="text-lg text-muted-foreground">
+              {format(new Date(), "EEEE, MMMM do, yyyy")}
+            </p>
+          </div>
 
-              <div className="grid gap-8 md:grid-cols-2">
-                <div className="glass-card">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={handleDateSelect}
-                    className="rounded-md border"
-                  />
-                </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="glass-card">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={handleDateSelect}
+                className="rounded-md border"
+              />
+            </div>
 
-                <div className="glass-card">
-                  <h2 className="text-2xl font-semibold mb-4">Today's Workouts</h2>
-                  {todaysTasks.length === 0 ? (
-                    <p className="text-muted-foreground">No workouts scheduled for today</p>
-                  ) : (
-                    <div className="space-y-4">
-                      {todaysTasks.map((task) => (
-                        <div
-                          key={task.id}
-                          className="p-4 rounded-lg border border-border bg-card"
-                        >
-                          <h3 className="font-semibold">{task.title}</h3>
-                          <p className="text-muted-foreground">{task.description}</p>
-                        </div>
-                      ))}
+            <div className="glass-card">
+              <h2 className="text-2xl font-semibold mb-4">Today's Workouts</h2>
+              {todaysTasks.length === 0 ? (
+                <p className="text-muted-foreground">No workouts scheduled for today</p>
+              ) : (
+                <div className="space-y-4">
+                  {todaysTasks.map((task) => (
+                    <div
+                      key={task.id}
+                      className="p-4 rounded-lg border border-border bg-card"
+                    >
+                      <h3 className="font-semibold">{task.title}</h3>
+                      <p className="text-muted-foreground">{task.description}</p>
                     </div>
-                  )}
+                  ))}
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
@@ -153,6 +146,6 @@ export default function CalendarPage() {
           </div>
         </DialogContent>
       </Dialog>
-    </SidebarProvider>
+    </div>
   );
 }

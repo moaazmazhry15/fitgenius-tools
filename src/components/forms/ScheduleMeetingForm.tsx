@@ -18,6 +18,9 @@ interface ScheduleMeetingFormProps {
   onOpenChange: (open: boolean) => void;
 }
 
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
 const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -33,13 +36,15 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     setLoading(true);
 
     try {
+      console.log('Submitting to:', `${SUPABASE_URL}/functions/v1/handle-meeting-request`);
+      
       const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/handle-meeting-request`,
+        `${SUPABASE_URL}/functions/v1/handle-meeting-request`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
           },
           body: JSON.stringify(formData)
         }

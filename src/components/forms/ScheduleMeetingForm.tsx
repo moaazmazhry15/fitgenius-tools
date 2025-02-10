@@ -40,13 +40,16 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
         headers: {
           "Content-Type": "application/json",
         },
-        mode: "no-cors", // Handle CORS
         body: JSON.stringify({
           ...formData,
           timestamp: new Date().toISOString(),
           triggered_from: window.location.origin,
         }),
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       toast.success("Meeting request submitted!");
       onOpenChange(false);
@@ -59,7 +62,7 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
       });
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Failed to submit form. Please try again.");
+      toast.error("Failed to submit form. Please check if the webhook URL is accessible.");
     } finally {
       setLoading(false);
     }

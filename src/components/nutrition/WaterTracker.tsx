@@ -35,11 +35,15 @@ const WaterTracker = () => {
 
   const addWaterIntake = async () => {
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("No user logged in");
+
       const { error } = await supabase
         .from("water_intake")
         .insert([{
           amount_ml: amount,
-          intake_date: format(new Date(), 'yyyy-MM-dd')
+          intake_date: format(new Date(), 'yyyy-MM-dd'),
+          user_id: session.user.id
         }]);
 
       if (error) throw error;

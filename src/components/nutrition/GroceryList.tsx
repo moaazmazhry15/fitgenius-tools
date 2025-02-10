@@ -55,9 +55,15 @@ const GroceryList = () => {
     }
 
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("No user logged in");
+
       const { error } = await supabase
         .from("grocery_items")
-        .insert([newItem]);
+        .insert([{ 
+          ...newItem,
+          user_id: session.user.id
+        }]);
 
       if (error) throw error;
       

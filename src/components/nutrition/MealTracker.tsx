@@ -54,16 +54,21 @@ const MealTracker = () => {
 
   const addMeal = async () => {
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("No user logged in");
+
       const { error } = await supabase
         .from("meals")
-        .insert([newMeal]);
+        .insert([{ 
+          ...newMeal,
+          user_id: session.user.id
+        }]);
 
       if (error) throw error;
       
       toast.success("Meal added successfully!");
       await fetchMeals();
       
-      // Reset form
       setNewMeal({
         meal_date: format(new Date(), 'yyyy-MM-dd'),
         meal_type: "breakfast",

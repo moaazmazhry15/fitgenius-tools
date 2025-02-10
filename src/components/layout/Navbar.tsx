@@ -1,9 +1,8 @@
 
 import { useState, useEffect } from "react";
-import { Menu, X, Moon, Sun, User } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import { useTheme } from "../theme-provider";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import {
@@ -21,7 +20,6 @@ interface Profile {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<any>(null);
@@ -69,10 +67,6 @@ const Navbar = () => {
     }
   };
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
   const handleSignOut = async () => {
     try {
       setLoading(true);
@@ -114,19 +108,6 @@ const Navbar = () => {
             <Link to="/resources" className="text-foreground hover:text-primary transition-colors">
               Resources
             </Link>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="btn-modern"
-            >
-              {theme === 'dark' ? (
-                <Sun className="h-[1.2rem] w-[1.2rem]" />
-              ) : (
-                <Moon className="h-[1.2rem] w-[1.2rem]" />
-              )}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
 
             {session ? (
               <div className="flex items-center gap-4">
@@ -184,20 +165,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="btn-modern"
-            >
-              {theme === 'dark' ? (
-                <Sun className="h-[1.2rem] w-[1.2rem]" />
-              ) : (
-                <Moon className="h-[1.2rem] w-[1.2rem]" />
-              )}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-foreground p-2"

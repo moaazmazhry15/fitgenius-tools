@@ -37,7 +37,7 @@ const menuItems = [
 
 export function DashboardSidebar() {
   return (
-    <Sidebar className="border-r border-border">
+    <Sidebar className="h-screen border-r border-border">
       <div className="flex h-16 items-center border-b border-border px-4">
         <h2 className="text-lg font-semibold">FitGenius</h2>
         <SidebarTrigger className="ml-auto h-8 w-8 hover:bg-accent rounded-full transition-colors">

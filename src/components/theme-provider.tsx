@@ -23,12 +23,26 @@ export function ThemeProvider({
   children,
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>(() => {
+    // Check if theme is stored in localStorage
+    const storedTheme = localStorage.getItem('theme') as Theme;
+    // Check system preference if no stored theme
+    if (!storedTheme) {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      return systemTheme as Theme;
+    }
+    return storedTheme;
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
+    
+    // Remove both classes first
     root.classList.remove('light', 'dark');
+    // Add the current theme class
     root.classList.add(theme);
+    // Store theme in localStorage
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const value = {

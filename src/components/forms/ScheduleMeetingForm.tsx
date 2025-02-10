@@ -34,18 +34,22 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
 
     try {
       const response = await fetch(
-        'https://kabeeryosaf.app.n8n.cloud/webhook-test/get-in-touch',
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/handle-meeting-request`,
         {
           method: 'POST',
-          mode: 'no-cors',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
           },
           body: JSON.stringify(formData)
         }
       );
 
-      // Since no-cors mode returns an opaque response, we'll assume success if no error was thrown
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to submit form');
+      }
+
       toast.success("Meeting request submitted!");
       onOpenChange(false);
       setFormData({

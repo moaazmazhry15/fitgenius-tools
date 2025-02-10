@@ -18,7 +18,7 @@ serve(async (req) => {
 
     // Forward the data to n8n webhook
     const n8nResponse = await fetch(
-      'https://kabeeryosaf.app.n8n.cloud/webhook-test/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1',
+      'https://kabeeryosaf.app.n8n.cloud/webhook-test/get-in-touch',
       {
         method: 'POST',
         headers: {

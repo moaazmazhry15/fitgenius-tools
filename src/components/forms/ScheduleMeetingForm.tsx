@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 
 interface ScheduleMeetingFormProps {
   open: boolean;
@@ -34,12 +33,10 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     setLoading(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('handle-meeting-request', {
-        body: formData
-      });
-
-      if (error) throw error;
-
+      // Here you can implement your own meeting request handling logic
+      // For now, we'll just show a success message
+      console.log('Meeting request data:', formData);
+      
       toast.success("Meeting request submitted!");
       onOpenChange(false);
       setFormData({

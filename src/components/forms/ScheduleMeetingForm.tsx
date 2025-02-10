@@ -35,7 +35,7 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     try {
       // Method 1: Direct fetch with no-cors mode
       const response = await fetch(
-        'https://kabeeryosaf.app.n8n.cloud/webhook-test/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1',
+        'https://kabeeryosaf.app.n8n.cloud/webhook/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1',
         {
           method: 'POST',
           mode: 'no-cors',
@@ -62,7 +62,7 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
       
       // Method 2: Try with XMLHttpRequest as fallback
       const xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://kabeeryosaf.app.n8n.cloud/webhook-test/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1', true);
+      xhr.open('POST', 'https://kabeeryosaf.app.n8n.cloud/webhook/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1', true);
       xhr.setRequestHeader('Content-Type', 'application/json');
       
       xhr.onload = function() {

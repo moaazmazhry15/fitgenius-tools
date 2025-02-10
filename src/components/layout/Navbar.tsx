@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X, User, Sun, Moon } from "lucide-react";
 import { Button } from "../ui/button";
@@ -103,9 +102,6 @@ const Navbar = () => {
             <Link to="/tools" className="text-foreground hover:text-primary transition-colors">
               Tools
             </Link>
-            <Link to="/coaching" className="text-foreground hover:text-primary transition-colors">
-              Coaching
-            </Link>
             <Link to="/resources" className="text-foreground hover:text-primary transition-colors">
               Resources
             </Link>
@@ -206,12 +202,6 @@ const Navbar = () => {
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
               >
                 Tools
-              </Link>
-              <Link
-                to="/coaching"
-                className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-              >
-                Coaching
               </Link>
               <Link
                 to="/resources"

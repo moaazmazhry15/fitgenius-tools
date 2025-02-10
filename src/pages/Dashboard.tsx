@@ -52,10 +52,10 @@ const Dashboard = () => {
 
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen w-full relative">
+      <div className="flex w-full">
         <DashboardSidebar />
-        <div className="flex-1">
-          <div className="container mx-auto px-4 py-24 pb-32">
+        <main className="flex-1 min-h-screen pb-16">
+          <div className="container mx-auto px-4 py-24">
             <div className="flex justify-between items-center mb-8 glass-card animate-fade-in">
               <h1 className="text-3xl font-bold text-primary">
                 Hello, {username}
@@ -88,12 +88,12 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="glass-card animate-fade-in">
+            <div className="glass-card animate-fade-in mb-8">
               <h2 className="text-2xl font-semibold mb-6 text-primary">Your Progress</h2>
               <DashboardCharts userId={userId} />
             </div>
           </div>
-        </div>
+        </main>
       </div>
     </SidebarProvider>
   );

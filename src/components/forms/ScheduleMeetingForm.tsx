@@ -12,14 +12,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ScheduleMeetingFormProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
-
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) => {
   const [loading, setLoading] = useState(false);
@@ -36,24 +34,11 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     setLoading(true);
 
     try {
-      console.log('Submitting to:', `${SUPABASE_URL}/functions/v1/handle-meeting-request`);
-      
-      const response = await fetch(
-        `${SUPABASE_URL}/functions/v1/handle-meeting-request`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          },
-          body: JSON.stringify(formData)
-        }
-      );
+      const { data, error } = await supabase.functions.invoke('handle-meeting-request', {
+        body: formData
+      });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to submit form');
-      }
+      if (error) throw error;
 
       toast.success("Meeting request submitted!");
       onOpenChange(false);

@@ -78,11 +78,11 @@ const Dashboard = () => {
             </div>
 
             {/* Middle Section - Nutrition Tracking */}
-            <div className="grid gap-6 md:grid-cols-3">
-              <div className="glass-card md:col-span-2">
+            <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
+              <div className="glass-card lg:col-span-2">
                 <MealTracker />
               </div>
-              <div className="space-y-6">
+              <div className="space-y-6 lg:col-span-1">
                 <div className="glass-card">
                   <WaterTracker />
                 </div>

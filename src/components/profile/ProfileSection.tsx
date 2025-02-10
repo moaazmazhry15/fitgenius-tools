@@ -13,8 +13,6 @@ interface Profile {
   avatar_url: string | null;
   full_name: string | null;
   bio: string | null;
-  location: string | null;
-  website: string | null;
   gender: string | null;
   date_of_birth: string | null;
 }
@@ -26,8 +24,6 @@ const ProfileSection = ({ userEmail }: { userEmail: string }) => {
     avatar_url: null,
     full_name: null,
     bio: null,
-    location: null,
-    website: null,
     gender: null,
     date_of_birth: null,
   });
@@ -45,8 +41,6 @@ const ProfileSection = ({ userEmail }: { userEmail: string }) => {
         avatar_url: profile.avatar_url,
         full_name: profile.full_name,
         bio: profile.bio,
-        location: profile.location,
-        website: profile.website,
         gender: profile.gender,
         date_of_birth: profile.date_of_birth,
         updated_at: new Date().toISOString(),
@@ -121,32 +115,6 @@ const ProfileSection = ({ userEmail }: { userEmail: string }) => {
               placeholder="Tell us about yourself"
               className="resize-none"
               rows={3}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="location" className="text-sm font-medium">
-              Location
-            </label>
-            <Input
-              id="location"
-              type="text"
-              value={profile.location || ""}
-              onChange={(e) => setProfile({ ...profile, location: e.target.value })}
-              placeholder="Your location"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="website" className="text-sm font-medium">
-              Website
-            </label>
-            <Input
-              id="website"
-              type="url"
-              value={profile.website || ""}
-              onChange={(e) => setProfile({ ...profile, website: e.target.value })}
-              placeholder="Your website URL"
             />
           </div>
 

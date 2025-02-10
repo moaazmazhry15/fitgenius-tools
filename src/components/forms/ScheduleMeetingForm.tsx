@@ -35,22 +35,21 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     try {
       console.log("Submitting form data:", formData);
       
-      const response = await fetch(
+      // Send form data to webhook without expecting a proper response
+      await fetch(
         "https://kabeeryosaf.app.n8n.cloud/webhook-test/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1",
         {
           method: "POST",
-          mode: "no-cors", // Add this line to handle CORS
+          mode: "no-cors", 
           headers: {
+            "Accept": "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
         }
       );
 
-      console.log("Response received");
-      
-      // Since we're using no-cors mode, we won't get a proper response status
-      // Instead, we'll assume success if we reach this point
+      // If we reach here without throwing, consider it a success
       toast.success("Meeting request submitted successfully!");
       onOpenChange(false);
       setFormData({

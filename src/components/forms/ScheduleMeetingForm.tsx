@@ -20,7 +20,6 @@ interface ScheduleMeetingFormProps {
 
 const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) => {
   const [loading, setLoading] = useState(false);
-  const [webhookUrl, setWebhookUrl] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,16 +32,10 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     e.preventDefault();
     setLoading(true);
 
-    if (!webhookUrl) {
-      toast.error("Please enter your webhook URL");
-      setLoading(false);
-      return;
-    }
-
     try {
       console.log('Meeting request data:', formData);
       
-      const response = await fetch(webhookUrl, {
+      const response = await fetch('https://kabeeryosaf.app.n8n.cloud/webhook-test/get-in-touch', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,18 +84,6 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="webhook">Webhook URL</Label>
-            <Input
-              id="webhook"
-              name="webhook"
-              type="url"
-              required
-              value={webhookUrl}
-              onChange={(e) => setWebhookUrl(e.target.value)}
-              placeholder="Enter your webhook URL"
-            />
-          </div>
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input

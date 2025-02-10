@@ -33,17 +33,19 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     setLoading(true);
 
     try {
-      const response = await fetch("https://kabeeryosaf.app.n8n.cloud/webhook/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*" // Allow any origin temporarily
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        'https://kabeeryosaf.app.n8n.cloud/webhook-test/get-in-touch',
+        {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        }
+      );
 
-      const data = await response.json();
-      console.log("Success:", data);
+      // Since no-cors mode returns an opaque response, we'll assume success if no error was thrown
       toast.success("Meeting request submitted!");
       onOpenChange(false);
       setFormData({

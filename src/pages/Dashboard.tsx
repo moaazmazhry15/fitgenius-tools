@@ -39,7 +39,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 pt-20 pb-12">
       <div className="grid gap-6 md:grid-cols-2">
         <ProfileSection userEmail={userEmail} />
         <WorkoutSection userId={userId} />

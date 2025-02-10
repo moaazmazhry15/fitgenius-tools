@@ -1,5 +1,5 @@
 
-import { Calendar, Home, MessageSquare, Settings, User, Dumbbell, Apple, CupSoda, ShoppingCart } from "lucide-react";
+import { Calendar, Home, MessageSquare, Settings, User, Dumbbell, Apple, CupSoda, ShoppingCart, ChevronDown } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -40,7 +40,9 @@ export function DashboardSidebar() {
     <Sidebar className="border-r border-border">
       <div className="flex h-16 items-center border-b border-border px-4">
         <h2 className="text-lg font-semibold">FitGenius</h2>
-        <SidebarTrigger className="ml-auto h-8 w-8" />
+        <SidebarTrigger className="ml-auto h-8 w-8">
+          <ChevronDown className="h-4 w-4" />
+        </SidebarTrigger>
       </div>
       <SidebarContent>
         {menuItems.map((group, index) => (

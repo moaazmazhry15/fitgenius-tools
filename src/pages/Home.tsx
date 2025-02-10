@@ -3,8 +3,12 @@ import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Troph
 import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
+import ScheduleMeetingForm from "@/components/forms/ScheduleMeetingForm";
+import { useState } from "react";
 
 const Home = () => {
+  const [showScheduleForm, setShowScheduleForm] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -25,15 +29,22 @@ const Home = () => {
                   Try Free Calculators <ArrowRight className="ml-2" />
                 </Button>
               </Link>
-              <Link to="/coaching">
-                <Button variant="outline" className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg">
-                  Join Online Coaching
-                </Button>
-              </Link>
+              <Button 
+                variant="outline" 
+                className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg"
+                onClick={() => setShowScheduleForm(true)}
+              >
+                Get In Touch
+              </Button>
             </div>
           </div>
         </div>
       </section>
+
+      <ScheduleMeetingForm 
+        open={showScheduleForm} 
+        onOpenChange={setShowScheduleForm}
+      />
 
       <Separator className="my-8" />
 

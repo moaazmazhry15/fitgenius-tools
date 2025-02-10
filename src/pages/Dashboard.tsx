@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,6 +9,9 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { PlusCircle, Trash2 } from "lucide-react";
 import { format } from "date-fns";
+import MealTracker from "@/components/nutrition/MealTracker";
+import WaterTracker from "@/components/nutrition/WaterTracker";
+import GroceryList from "@/components/nutrition/GroceryList";
 
 interface Profile {
   username: string | null;
@@ -319,6 +321,15 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      {/* Nutrition Section */}
+      <div className="grid gap-6 md:grid-cols-2 mt-6">
+        <MealTracker />
+        <div className="space-y-6">
+          <WaterTracker />
+          <GroceryList />
+        </div>
       </div>
 
       {/* Workout History */}

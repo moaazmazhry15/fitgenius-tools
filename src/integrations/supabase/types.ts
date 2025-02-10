@@ -9,6 +9,75 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      grocery_items: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          is_checked: boolean | null
+          name: string
+          user_id: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          is_checked?: boolean | null
+          name: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          is_checked?: boolean | null
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      meals: {
+        Row: {
+          calories: number
+          carbs_grams: number
+          created_at: string
+          fat_grams: number
+          id: string
+          meal_date: string
+          meal_type: string
+          name: string
+          notes: string | null
+          protein_grams: number
+          user_id: string
+        }
+        Insert: {
+          calories: number
+          carbs_grams: number
+          created_at?: string
+          fat_grams: number
+          id?: string
+          meal_date?: string
+          meal_type: string
+          name: string
+          notes?: string | null
+          protein_grams: number
+          user_id: string
+        }
+        Update: {
+          calories?: number
+          carbs_grams?: number
+          created_at?: string
+          fat_grams?: number
+          id?: string
+          meal_date?: string
+          meal_type?: string
+          name?: string
+          notes?: string | null
+          protein_grams?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -27,6 +96,30 @@ export type Database = {
           id?: string
           updated_at?: string
           username?: string | null
+        }
+        Relationships: []
+      }
+      water_intake: {
+        Row: {
+          amount_ml: number
+          created_at: string
+          id: string
+          intake_date: string
+          user_id: string
+        }
+        Insert: {
+          amount_ml: number
+          created_at?: string
+          id?: string
+          intake_date?: string
+          user_id: string
+        }
+        Update: {
+          amount_ml?: number
+          created_at?: string
+          id?: string
+          intake_date?: string
+          user_id?: string
         }
         Relationships: []
       }

@@ -9,8 +9,6 @@ import GroceryList from "@/components/nutrition/GroceryList";
 import ProfileSection from "@/components/profile/ProfileSection";
 import WorkoutSection from "@/components/workouts/WorkoutSection";
 import DashboardCharts from "@/components/dashboard/DashboardCharts";
-import { DashboardSidebar } from "@/components/layout/DashboardSidebar";
-import { SidebarProvider } from "@/components/ui/sidebar";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -51,51 +49,46 @@ const Dashboard = () => {
   }
 
   return (
-    <SidebarProvider>
-      <div className="flex w-full">
-        <DashboardSidebar />
-        <main className="flex-1 min-h-screen pb-16">
-          <div className="container mx-auto px-4 py-24">
-            <div className="flex justify-between items-center mb-8 glass-card animate-fade-in">
-              <h1 className="text-3xl font-bold text-primary">
-                Hello, {username}
-              </h1>
-              <p className="text-lg text-muted-foreground">
-                {format(new Date(), "EEEE, MMMM do, yyyy")}
-              </p>
-            </div>
+    <main className="min-h-screen pb-16">
+      <div className="container mx-auto px-4 py-24">
+        <div className="flex justify-between items-center mb-8 glass-card animate-fade-in">
+          <h1 className="text-3xl font-bold text-primary">
+            Hello, {username}
+          </h1>
+          <p className="text-lg text-muted-foreground">
+            {format(new Date(), "EEEE, MMMM do, yyyy")}
+          </p>
+        </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="glass-card">
-                <ProfileSection userEmail={userEmail} />
-              </div>
-              <div className="glass-card">
-                <WorkoutSection userId={userId} />
-              </div>
-            </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="glass-card">
+            <ProfileSection userEmail={userEmail} />
+          </div>
+          <div className="glass-card">
+            <WorkoutSection userId={userId} />
+          </div>
+        </div>
 
-            <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
-              <div className="glass-card lg:col-span-2">
-                <MealTracker />
-              </div>
-              <div className="space-y-6 lg:col-span-1">
-                <div className="glass-card">
-                  <WaterTracker />
-                </div>
-                <div className="glass-card">
-                  <GroceryList />
-                </div>
-              </div>
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
+          <div className="glass-card lg:col-span-2">
+            <MealTracker />
+          </div>
+          <div className="space-y-6 lg:col-span-1">
+            <div className="glass-card">
+              <WaterTracker />
             </div>
-
-            <div className="glass-card animate-fade-in mb-8">
-              <h2 className="text-2xl font-semibold mb-6 text-primary">Your Progress</h2>
-              <DashboardCharts userId={userId} />
+            <div className="glass-card">
+              <GroceryList />
             </div>
           </div>
-        </main>
+        </div>
+
+        <div className="glass-card animate-fade-in mb-8">
+          <h2 className="text-2xl font-semibold mb-6 text-primary">Your Progress</h2>
+          <DashboardCharts userId={userId} />
+        </div>
       </div>
-    </SidebarProvider>
+    </main>
   );
 };
 

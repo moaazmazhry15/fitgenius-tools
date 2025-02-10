@@ -33,6 +33,8 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     setLoading(true);
 
     try {
+      console.log("Submitting form data:", formData);
+      
       const response = await fetch(
         "https://kabeeryosaf.app.n8n.cloud/webhook-test/1cc6c5d0-72a5-4fbd-93fd-daf5d4c08ae1",
         {
@@ -44,20 +46,25 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
         }
       );
 
-      if (response.ok) {
-        toast.success("Meeting request submitted successfully!");
-        onOpenChange(false);
-        setFormData({
-          name: "",
-          email: "",
-          date: "",
-          time: "",
-          notes: "",
-        });
-      } else {
-        throw new Error("Failed to submit form");
+      console.log("Response status:", response.status);
+      
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error("Error response:", errorData);
+        throw new Error(`Failed to submit form: ${errorData}`);
       }
+
+      toast.success("Meeting request submitted successfully!");
+      onOpenChange(false);
+      setFormData({
+        name: "",
+        email: "",
+        date: "",
+        time: "",
+        notes: "",
+      });
     } catch (error) {
+      console.error("Submission error:", error);
       toast.error("Failed to submit form. Please try again.");
     } finally {
       setLoading(false);

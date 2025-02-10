@@ -53,8 +53,8 @@ const Dashboard = () => {
   return (
     <div className="container mx-auto px-4 py-24">
       {/* Welcome Header */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">
+      <div className="flex justify-between items-center mb-8 glass-card animate-fade-in">
+        <h1 className="text-3xl font-bold text-primary">
           Hello, {username}
         </h1>
         <p className="text-lg text-muted-foreground">
@@ -62,22 +62,37 @@ const Dashboard = () => {
         </p>
       </div>
 
-      {/* Progress Charts Section */}
-      <div className="mb-8">
-        <DashboardCharts userId={userId} />
-      </div>
+      {/* Main Content Grid */}
+      <div className="grid gap-8">
+        {/* Top Section - Profile and Workout */}
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="glass-card hover-scale">
+            <ProfileSection userEmail={userEmail} />
+          </div>
+          <div className="glass-card hover-scale">
+            <WorkoutSection userId={userId} />
+          </div>
+        </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <ProfileSection userEmail={userEmail} />
-        <WorkoutSection userId={userId} />
-      </div>
+        {/* Middle Section - Nutrition Tracking */}
+        <div className="grid gap-6 md:grid-cols-3">
+          <div className="glass-card hover-scale md:col-span-2">
+            <MealTracker />
+          </div>
+          <div className="space-y-6">
+            <div className="glass-card hover-scale">
+              <WaterTracker />
+            </div>
+            <div className="glass-card hover-scale">
+              <GroceryList />
+            </div>
+          </div>
+        </div>
 
-      {/* Nutrition Section */}
-      <div className="grid gap-6 md:grid-cols-2 mt-6">
-        <MealTracker />
-        <div className="space-y-6">
-          <WaterTracker />
-          <GroceryList />
+        {/* Bottom Section - Progress Charts */}
+        <div className="glass-card hover-scale animate-fade-in">
+          <h2 className="text-2xl font-semibold mb-6 text-primary">Your Progress</h2>
+          <DashboardCharts userId={userId} />
         </div>
       </div>
     </div>

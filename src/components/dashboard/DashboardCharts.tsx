@@ -77,9 +77,9 @@ const DashboardCharts = ({ userId }: DashboardChartsProps) => {
   return (
     <div className="grid gap-6 md:grid-cols-2">
       {/* Calories Chart */}
-      <Card>
+      <Card className="bg-card/50 backdrop-blur-lg border-none shadow-lg">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle>Calorie Intake</CardTitle>
+          <CardTitle className="text-xl font-semibold">Calorie Intake</CardTitle>
           <Select
             value={timeRange}
             onValueChange={(value: "7" | "14" | "30") => setTimeRange(value)}
@@ -97,21 +97,30 @@ const DashboardCharts = ({ userId }: DashboardChartsProps) => {
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={caloriesData}>
-              <CartesianGrid strokeDasharray="3 3" />
+              <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
               <XAxis 
                 dataKey="date" 
                 tickFormatter={(value) => format(new Date(value), 'MMM dd')}
+                stroke="#888888"
               />
-              <YAxis />
+              <YAxis stroke="#888888" />
               <Tooltip 
                 labelFormatter={(value) => format(new Date(value), 'MMM dd, yyyy')}
                 formatter={(value: number) => [`${value} calories`, "Calories"]}
+                contentStyle={{ 
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                  borderRadius: '8px',
+                  border: 'none',
+                  boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                }}
               />
               <Line 
                 type="monotone" 
                 dataKey="total_calories" 
                 stroke="#9b87f5" 
                 strokeWidth={2}
+                dot={false}
+                activeDot={{ r: 6, fill: "#9b87f5" }}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -119,9 +128,9 @@ const DashboardCharts = ({ userId }: DashboardChartsProps) => {
       </Card>
 
       {/* Workout Duration Chart */}
-      <Card>
+      <Card className="bg-card/50 backdrop-blur-lg border-none shadow-lg">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle>Workout Duration</CardTitle>
+          <CardTitle className="text-xl font-semibold">Workout Duration</CardTitle>
           <Select
             value={timeRange}
             onValueChange={(value: "7" | "14" | "30") => setTimeRange(value)}
@@ -139,19 +148,27 @@ const DashboardCharts = ({ userId }: DashboardChartsProps) => {
         <CardContent>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={workoutData}>
-              <CartesianGrid strokeDasharray="3 3" />
+              <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
               <XAxis 
                 dataKey="date" 
                 tickFormatter={(value) => format(new Date(value), 'MMM dd')}
+                stroke="#888888"
               />
-              <YAxis />
+              <YAxis stroke="#888888" />
               <Tooltip 
                 labelFormatter={(value) => format(new Date(value), 'MMM dd, yyyy')}
                 formatter={(value: number) => [`${value} minutes`, "Duration"]}
+                contentStyle={{ 
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                  borderRadius: '8px',
+                  border: 'none',
+                  boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+                }}
               />
               <Bar 
                 dataKey="total_duration" 
-                fill="#7E69AB" 
+                fill="#7E69AB"
+                radius={[4, 4, 0, 0]}
               />
             </BarChart>
           </ResponsiveContainer>

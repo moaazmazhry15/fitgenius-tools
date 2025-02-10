@@ -20,6 +20,7 @@ interface ScheduleMeetingFormProps {
 
 const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) => {
   const [loading, setLoading] = useState(false);
+  const [webhookUrl, setWebhookUrl] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,11 +33,28 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     e.preventDefault();
     setLoading(true);
 
+    if (!webhookUrl) {
+      toast.error("Please enter your webhook URL");
+      setLoading(false);
+      return;
+    }
+
     try {
-      // Here you can implement your own meeting request handling logic
-      // For now, we'll just show a success message
       console.log('Meeting request data:', formData);
       
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "no-cors", // Handle CORS
+        body: JSON.stringify({
+          ...formData,
+          timestamp: new Date().toISOString(),
+          triggered_from: window.location.origin,
+        }),
+      });
+
       toast.success("Meeting request submitted!");
       onOpenChange(false);
       setFormData({
@@ -73,6 +91,18 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="webhook">Webhook URL</Label>
+            <Input
+              id="webhook"
+              name="webhook"
+              type="url"
+              required
+              value={webhookUrl}
+              onChange={(e) => setWebhookUrl(e.target.value)}
+              placeholder="Enter your webhook URL"
+            />
+          </div>
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input

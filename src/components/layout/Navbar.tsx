@@ -81,6 +81,11 @@ const Navbar = () => {
     }
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+    toast.success(`Switched to ${theme === "light" ? "dark" : "light"} mode`);
+  };
+
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/50 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,7 +113,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              onClick={toggleTheme}
               className="rounded-full"
             >
               {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
@@ -173,7 +178,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              onClick={toggleTheme}
               className="rounded-full"
             >
               {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}

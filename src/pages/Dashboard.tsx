@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
@@ -10,7 +11,6 @@ import WorkoutSection from "@/components/workouts/WorkoutSection";
 import DashboardCharts from "@/components/dashboard/DashboardCharts";
 import { DashboardSidebar } from "@/components/layout/DashboardSidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import Footer from "@/components/layout/Footer";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -52,10 +52,10 @@ const Dashboard = () => {
 
   return (
     <SidebarProvider>
-      <div className="flex flex-col min-h-screen w-full">
-        <div className="flex flex-1">
-          <DashboardSidebar />
-          <div className="flex-1 container mx-auto px-4 py-24">
+      <div className="flex min-h-screen w-full">
+        <DashboardSidebar />
+        <div className="flex-1 overflow-auto">
+          <div className="container mx-auto px-4 py-24">
             <div className="flex justify-between items-center mb-8 glass-card animate-fade-in">
               <h1 className="text-3xl font-bold text-primary">
                 Hello, {username}
@@ -94,7 +94,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     </SidebarProvider>
   );

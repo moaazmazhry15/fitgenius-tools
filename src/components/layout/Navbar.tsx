@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X, User } from "lucide-react";
 import { Button } from "../ui/button";
@@ -29,7 +28,6 @@ const Navbar = () => {
   });
 
   useEffect(() => {
-    // Fetch initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session?.user) {
@@ -37,7 +35,6 @@ const Navbar = () => {
       }
     });
 
-    // Listen for auth changes
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -91,16 +88,12 @@ const Navbar = () => {
             </Link>
           </div>
           
-          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-foreground hover:text-primary transition-colors">
               Home
             </Link>
             <Link to="/tools" className="text-foreground hover:text-primary transition-colors">
               Tools
-            </Link>
-            <Link to="/blog" className="text-foreground hover:text-primary transition-colors">
-              Blog
             </Link>
             <Link to="/coaching" className="text-foreground hover:text-primary transition-colors">
               Coaching
@@ -164,7 +157,6 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -175,7 +167,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -190,12 +181,6 @@ const Navbar = () => {
                 className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
               >
                 Tools
-              </Link>
-              <Link
-                to="/blog"
-                className="block px-3 py-2 text-foreground hover:text-primary transition-colors"
-              >
-                Blog
               </Link>
               <Link
                 to="/coaching"

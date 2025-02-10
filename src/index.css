@@ -1,4 +1,3 @@
-
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -59,11 +58,6 @@
   @apply bg-card/50 backdrop-blur-lg border border-border rounded-xl shadow-lg p-6;
 }
 
-.hover-scale {
-  @apply transition-transform duration-300 hover:scale-105;
-}
-
 .btn-modern {
   @apply rounded-full transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95;
 }
-

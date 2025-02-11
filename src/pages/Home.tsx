@@ -1,8 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import ScheduleMeetingForm from "@/components/forms/ScheduleMeetingForm";
@@ -48,8 +46,6 @@ const Home = () => {
         onOpenChange={setShowScheduleForm}
       />
 
-      <Separator className="my-8" />
-
       {/* About Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-accent/5">
         <div className="max-w-7xl mx-auto">
@@ -81,8 +77,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      <Separator className="my-8" />
 
       {/* Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -133,8 +127,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      <Separator className="my-8" />
 
       {/* Testimonials Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-accent/5">

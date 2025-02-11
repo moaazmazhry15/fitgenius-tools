@@ -23,11 +23,11 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: "#150A19",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#9b87f5",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#A755F8",
+          foreground: "#FFFFFF",
         },
         secondary: {
           DEFAULT: "#7E69AB",
@@ -38,8 +38,8 @@ export default {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#A755F8",
+          foreground: "#FFFFFF",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -49,6 +49,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        sans: ['DM Sans', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -68,6 +71,9 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      backgroundImage: {
+        'grid-pattern': "linear-gradient(to right, rgba(167, 85, 248, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(167, 85, 248, 0.1) 1px, transparent 1px)",
       },
     },
   },

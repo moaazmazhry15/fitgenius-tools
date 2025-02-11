@@ -9,13 +9,13 @@ const UnauthenticatedMenu = () => {
     <div className="flex items-center gap-4">
       <Button 
         variant="outline" 
-        className="btn-modern border-primary text-primary hover:bg-primary hover:text-white"
+        className="btn-modern bg-transparent border-2 border-primary hover:bg-primary/10 text-primary"
         onClick={() => navigate('/auth')}
       >
         Sign In
       </Button>
       <Button 
-        className="btn-modern bg-primary text-white hover:bg-secondary"
+        className="btn-modern"
         onClick={() => navigate('/auth?mode=signup')}
       >
         Get Started
@@ -25,3 +25,4 @@ const UnauthenticatedMenu = () => {
 };
 
 export default UnauthenticatedMenu;
+

@@ -6,36 +6,44 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
+    --background: 270 47% 7%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 270 47% 7%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 270 47% 7%;
     --popover-foreground: 0 0% 98%;
-    --primary: 263 80% 74%;
+    --primary: 271 92% 65%;
     --primary-foreground: 0 0% 98%;
     --secondary: 263 50% 54%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
+    --muted: 270 47% 15%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
+    --accent: 271 92% 65%;
     --accent-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 270 47% 15%;
+    --input: 270 47% 15%;
+    --ring: 271 92% 65%;
   }
 
   * {
-    @apply border-border selection:bg-white/10 selection:text-white;
+    @apply border-border selection:bg-primary/10 selection:text-primary;
   }
   
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased font-sans;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 
   html {
     @apply scroll-smooth;
+  }
+
+  h1, h2, h3 {
+    @apply font-extrabold;
+  }
+
+  h4, h5, h6 {
+    @apply font-semibold;
   }
 }
 
@@ -44,22 +52,12 @@
 }
 
 .btn-modern {
-  @apply rounded-full transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95;
+  @apply rounded-full transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 font-bold 
+         bg-primary text-white px-6 py-3 hover:bg-primary/90 hover:shadow-primary/25;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.section-with-grid {
+  @apply bg-[size:20px_20px] bg-grid-pattern;
 }
 
 @layer utilities {

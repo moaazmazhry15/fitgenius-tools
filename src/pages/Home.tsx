@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -25,13 +26,13 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/tools">
-                <Button className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg">
+                <Button className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg rounded-md font-bold">
                   Try Free Calculators <ArrowRight className="ml-2" />
                 </Button>
               </Link>
               <Button 
                 variant="outline" 
-                className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg"
+                className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg rounded-md font-bold"
                 onClick={() => setShowScheduleForm(true)}
               >
                 Get In Touch

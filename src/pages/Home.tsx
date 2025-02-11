@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -52,10 +51,10 @@ const Home = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-accent/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 text-foreground">
               Why Choose <span className="text-primary">FitCalcs?</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               We combine cutting-edge technology with proven fitness expertise to help you achieve your health and wellness goals.
             </p>
           </div>
@@ -77,6 +76,15 @@ const Home = () => {
               description="Science-based calculations and methods that deliver real results."
             />
           </div>
+
+          <div className="text-center mt-12">
+            <Button 
+              className="btn-modern rounded-full hover:scale-105 transform duration-300"
+              onClick={() => setShowScheduleForm(true)}
+            >
+              Schedule a Free Consultation <ArrowRight className="ml-2" />
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -84,13 +92,14 @@ const Home = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 text-foreground">
               Our <span className="text-primary">Fitness Tools</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
               Explore our comprehensive suite of fitness calculators designed to help you track, measure, and achieve your health and fitness goals with precision and ease.
             </p>
           </div>
+          
           <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {[
               {
@@ -127,6 +136,14 @@ const Home = () => {
               </Link>
             ))}
           </div>
+
+          <div className="text-center mt-12">
+            <Link to="/tools">
+              <Button className="btn-modern rounded-full hover:scale-105 transform duration-300">
+                Explore All Calculators <ArrowRight className="ml-2" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -134,10 +151,10 @@ const Home = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-accent/5">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 text-foreground">
               What Our <span className="text-primary">Users Say</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               Join thousands of satisfied users who have transformed their fitness journey with FitCalcs.
             </p>
           </div>
@@ -162,6 +179,14 @@ const Home = () => {
               rating={5}
             />
           </div>
+
+          <div className="text-center mt-12">
+            <Link to="/tools">
+              <Button className="btn-modern rounded-full hover:scale-105 transform duration-300">
+                Start Your Success Story <ArrowRight className="ml-2" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -169,10 +194,10 @@ const Home = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 text-foreground">
               Frequently Asked <span className="text-primary">Questions</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
               Find answers to common questions about our fitness calculators and tools.
             </p>
           </div>
@@ -210,14 +235,11 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-muted-foreground mb-6">
-              Still have questions? We're here to help!
-            </p>
             <Button 
-              className="btn-modern"
+              className="btn-modern rounded-full hover:scale-105 transform duration-300"
               onClick={() => setShowScheduleForm(true)}
             >
-              Contact Us
+              Get Personalized Help <ArrowRight className="ml-2" />
             </Button>
           </div>
         </div>

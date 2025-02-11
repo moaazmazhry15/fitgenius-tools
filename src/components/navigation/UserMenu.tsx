@@ -1,18 +1,10 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { User } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
+import AuthenticatedMenu from "./auth/AuthenticatedMenu";
+import UnauthenticatedMenu from "./auth/UnauthenticatedMenu";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Profile {
   username: string | null;
@@ -20,8 +12,6 @@ interface Profile {
 }
 
 const UserMenu = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<any>(null);
   const [profile, setProfile] = useState<Profile>({
     username: null,
@@ -65,77 +55,11 @@ const UserMenu = () => {
     }
   };
 
-  const handleSignOut = async () => {
-    try {
-      setLoading(true);
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      toast.success("Signed out successfully");
-      navigate("/");
-    } catch (error) {
-      toast.error("Error signing out");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   if (session) {
-    return (
-      <div className="flex items-center gap-4">
-        <Link 
-          to="/dashboard" 
-          className="text-foreground hover:text-primary transition-colors"
-        >
-          Dashboard
-        </Link>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-              <Avatar className="h-8 w-8">
-                <AvatarImage src={profile.avatar_url || undefined} alt={profile.username || "User"} />
-                <AvatarFallback>
-                  <User className="h-4 w-4" />
-                </AvatarFallback>
-              </Avatar>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem 
-              className="flex items-center gap-2"
-              onClick={() => navigate('/dashboard')}
-            >
-              {profile.username || session.user.email}
-            </DropdownMenuItem>
-            <DropdownMenuItem 
-              className="text-red-500 focus:text-red-500" 
-              onClick={handleSignOut}
-              disabled={loading}
-            >
-              {loading ? "Signing out..." : "Sign out"}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-    );
+    return <AuthenticatedMenu session={session} profile={profile} />;
   }
 
-  return (
-    <div className="flex items-center gap-4">
-      <Button 
-        variant="outline" 
-        className="btn-modern border-primary text-primary hover:bg-primary hover:text-white"
-        onClick={() => navigate('/auth')}
-      >
-        Sign In
-      </Button>
-      <Button 
-        className="btn-modern bg-primary text-white hover:bg-secondary"
-        onClick={() => navigate('/auth?mode=signup')}
-      >
-        Get Started
-      </Button>
-    </div>
-  );
+  return <UnauthenticatedMenu />;
 };
 
 export default UserMenu;

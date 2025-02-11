@@ -25,14 +25,14 @@ const Home = () => {
               Our precision tools help you achieve your fitness goals faster.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/tools">
-                <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg rounded-full btn-modern hover:scale-105 transform duration-300">
+              <Link to="/tools" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full text-base sm:text-lg rounded-full btn-modern hover:scale-105 transform duration-300">
                   Try Free Calculators <ArrowRight className="ml-2" />
                 </Button>
               </Link>
               <Button 
                 size="lg"
-                className="w-full sm:w-auto text-base sm:text-lg rounded-full bg-transparent border-2 border-primary hover:bg-accent hover:border-accent text-primary hover:text-primary-foreground hover:scale-105 transform duration-300"
+                className="w-full text-base sm:text-lg rounded-full bg-transparent border-2 border-primary hover:bg-accent hover:border-accent text-primary hover:text-primary-foreground hover:scale-105 transform duration-300"
                 onClick={() => setShowScheduleForm(true)}
               >
                 Get In Touch <ArrowRight className="ml-2" />

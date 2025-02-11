@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -166,6 +165,61 @@ const Home = () => {
               role="Weight Loss Success"
               rating={5}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Frequently Asked <span className="text-primary">Questions</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Find answers to common questions about our fitness calculators and tools.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {[
+              {
+                question: "How accurate are the calculators?",
+                answer: "Our calculators use scientifically validated formulas and provide highly accurate results when provided with accurate input data."
+              },
+              {
+                question: "How often should I recalculate my metrics?",
+                answer: "We recommend recalculating every 4-6 weeks or whenever there's a significant change in your weight or activity level."
+              },
+              {
+                question: "Can I track my progress over time?",
+                answer: "Yes! Create an account to save your calculations and track your fitness journey progress over time."
+              },
+              {
+                question: "Are the calculations suitable for everyone?",
+                answer: "Our calculators are designed for adults 18-65 years old. Consult with healthcare providers for personalized advice."
+              }
+            ].map(({ question, answer }, index) => (
+              <div 
+                key={index} 
+                className="p-6 rounded-xl bg-card border border-border hover:bg-accent/5 transition-colors"
+              >
+                <h3 className="text-lg font-semibold text-foreground mb-3">{question}</h3>
+                <p className="text-muted-foreground">{answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-muted-foreground mb-6">
+              Still have questions? We're here to help!
+            </p>
+            <Button 
+              className="btn-modern"
+              onClick={() => setShowScheduleForm(true)}
+            >
+              Contact Us
+            </Button>
           </div>
         </div>
       </section>

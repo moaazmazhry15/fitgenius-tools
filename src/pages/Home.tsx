@@ -30,9 +30,8 @@ const Home = () => {
                 </Button>
               </Link>
               <Button 
-                variant="outline" 
                 size="lg"
-                className="w-full sm:w-auto text-base sm:text-lg rounded-full btn-modern hover:scale-105 transform duration-300"
+                className="w-full sm:w-auto text-base sm:text-lg rounded-full bg-transparent border-2 border-primary hover:bg-accent hover:border-accent text-primary hover:text-primary-foreground transform duration-300 hover:scale-105"
                 onClick={() => setShowScheduleForm(true)}
               >
                 Get In Touch
@@ -79,7 +78,8 @@ const Home = () => {
 
           <div className="text-center mt-12">
             <Button 
-              className="btn-modern rounded-full hover:scale-105 transform duration-300"
+              size="lg"
+              className="w-full sm:w-auto text-base sm:text-lg rounded-full btn-modern hover:scale-105 transform duration-300"
               onClick={() => setShowScheduleForm(true)}
             >
               Schedule a Free Consultation <ArrowRight className="ml-2" />
@@ -139,7 +139,7 @@ const Home = () => {
 
           <div className="text-center mt-12">
             <Link to="/tools">
-              <Button className="btn-modern rounded-full hover:scale-105 transform duration-300">
+              <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg rounded-full btn-modern hover:scale-105 transform duration-300">
                 Explore All Calculators <ArrowRight className="ml-2" />
               </Button>
             </Link>
@@ -182,7 +182,7 @@ const Home = () => {
 
           <div className="text-center mt-12">
             <Link to="/tools">
-              <Button className="btn-modern rounded-full hover:scale-105 transform duration-300">
+              <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg rounded-full btn-modern hover:scale-105 transform duration-300">
                 Start Your Success Story <ArrowRight className="ml-2" />
               </Button>
             </Link>
@@ -236,7 +236,8 @@ const Home = () => {
 
           <div className="text-center mt-12">
             <Button 
-              className="btn-modern rounded-full hover:scale-105 transform duration-300"
+              size="lg"
+              className="w-full sm:w-auto text-base sm:text-lg rounded-full btn-modern hover:scale-105 transform duration-300"
               onClick={() => setShowScheduleForm(true)}
             >
               Get Personalized Help <ArrowRight className="ml-2" />

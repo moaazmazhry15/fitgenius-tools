@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">FitGenius</h3>
+            <h3 className="text-xl font-bold mb-4">FitCalcs</h3>
             <p className="text-muted-foreground">
               Empowering your fitness journey with smart tools and expert guidance.
             </p>
@@ -41,8 +41,8 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-2">
-              <li>support@fitgenius.com</li>
-              <li>1-800-FIT-GENIUS</li>
+              <li>support@fitcalcs.com</li>
+              <li>1-800-FIT-CALC</li>
               <li>123 Fitness Street</li>
               <li>Workout City, FC 12345</li>
             </ul>
@@ -66,7 +66,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border py-6 text-center">
-          <p>&copy; {new Date().getFullYear()} FitGenius. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} FitCalcs. All rights reserved.</p>
         </div>
       </div>
     </footer>

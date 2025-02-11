@@ -26,13 +26,14 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/tools">
-                <Button className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg rounded-md font-bold">
+                <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg">
                   Try Free Calculators <ArrowRight className="ml-2" />
                 </Button>
               </Link>
               <Button 
                 variant="outline" 
-                className="w-full sm:w-auto px-6 py-5 text-base sm:text-lg rounded-md font-bold"
+                size="lg"
+                className="w-full sm:w-auto text-base sm:text-lg"
                 onClick={() => setShowScheduleForm(true)}
               >
                 Get In Touch

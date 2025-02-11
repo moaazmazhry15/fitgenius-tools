@@ -26,7 +26,7 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/tools">
-                <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg">
+                <Button size="lg" className="w-full sm:w-auto text-base sm:text-lg rounded-full">
                   Try Free Calculators <ArrowRight className="ml-2" />
                 </Button>
               </Link>

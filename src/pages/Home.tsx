@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -31,10 +32,10 @@ const Home = () => {
               </Link>
               <Button 
                 size="lg"
-                className="w-full sm:w-auto text-base sm:text-lg rounded-full bg-transparent border-2 border-primary hover:bg-accent hover:border-accent text-primary hover:text-primary-foreground transform duration-300 hover:scale-105"
+                className="w-full sm:w-auto text-base sm:text-lg rounded-full bg-transparent border-2 border-primary hover:bg-accent hover:border-accent text-primary hover:text-primary-foreground hover:scale-105 transform duration-300"
                 onClick={() => setShowScheduleForm(true)}
               >
-                Get In Touch
+                Get In Touch <ArrowRight className="ml-2" />
               </Button>
             </div>
           </div>

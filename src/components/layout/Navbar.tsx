@@ -1,17 +1,11 @@
 
 import { useState, useEffect } from "react";
-import { Menu, X, User } from "lucide-react";
-import { Button } from "../ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import NavLinks from "../navigation/NavLinks";
+import UserMenu from "../navigation/UserMenu";
+import MobileMenu from "../navigation/MobileMenu";
 
 interface Profile {
   username: string | null;
@@ -20,8 +14,6 @@ interface Profile {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<any>(null);
   const [profile, setProfile] = useState<Profile>({
     username: null,
@@ -65,20 +57,6 @@ const Navbar = () => {
     }
   };
 
-  const handleSignOut = async () => {
-    try {
-      setLoading(true);
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      toast.success("Signed out successfully");
-      navigate("/");
-    } catch (error) {
-      toast.error("Error signing out");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/50 backdrop-blur-lg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,69 +68,8 @@ const Navbar = () => {
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-foreground hover:text-primary transition-colors">
-              Home
-            </Link>
-            <Link to="/tools" className="text-foreground hover:text-primary transition-colors">
-              Tools
-            </Link>
-            <Link to="/resources" className="text-foreground hover:text-primary transition-colors">
-              Resources
-            </Link>
-
-            {session ? (
-              <div className="flex items-center gap-4">
-                <Link 
-                  to="/dashboard" 
-                  className="text-foreground hover:text-primary transition-colors"
-                >
-                  Dashboard
-                </Link>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                      <Avatar className="h-8 w-8">
-                        <AvatarImage src={profile.avatar_url || undefined} alt={profile.username || "User"} />
-                        <AvatarFallback>
-                          <User className="h-4 w-4" />
-                        </AvatarFallback>
-                      </Avatar>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem 
-                      className="flex items-center gap-2"
-                      onClick={() => navigate('/dashboard')}
-                    >
-                      {profile.username || session.user.email}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem 
-                      className="text-red-500 focus:text-red-500" 
-                      onClick={handleSignOut}
-                      disabled={loading}
-                    >
-                      {loading ? "Signing out..." : "Sign out"}
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            ) : (
-              <div className="flex items-center gap-4">
-                <Button 
-                  variant="outline" 
-                  className="btn-modern border-primary text-primary hover:bg-primary hover:text-white"
-                  onClick={() => navigate('/auth')}
-                >
-                  Sign In
-                </Button>
-                <Button 
-                  className="btn-modern bg-primary text-white hover:bg-secondary"
-                  onClick={() => navigate('/auth?mode=signup')}
-                >
-                  Get Started
-                </Button>
-              </div>
-            )}
+            <NavLinks />
+            <UserMenu />
           </div>
 
           <div className="md:hidden flex items-center">
@@ -165,80 +82,12 @@ const Navbar = () => {
           </div>
         </div>
 
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link
-                to="/"
-                className="block px-3 py-2 text-base font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
-                to="/tools"
-                className="block px-3 py-2 text-base font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Tools
-              </Link>
-              <Link
-                to="/resources"
-                className="block px-3 py-2 text-base font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Resources
-              </Link>
-              {session && (
-                <Link
-                  to="/dashboard"
-                  className="block px-3 py-2 text-base font-medium text-foreground hover:text-primary transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Dashboard
-                </Link>
-              )}
-              <div className="space-y-2 mt-4">
-                {session ? (
-                  <>
-                    <div className="px-3 py-2 text-base font-medium text-foreground">
-                      {profile.username || session.user.email}
-                    </div>
-                    <Button
-                      className="w-full btn-modern bg-red-500 text-white hover:bg-red-600"
-                      onClick={handleSignOut}
-                      disabled={loading}
-                    >
-                      {loading ? "Signing out..." : "Sign out"}
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Button 
-                      variant="outline" 
-                      className="w-full btn-modern border-primary text-primary hover:bg-primary hover:text-white"
-                      onClick={() => {
-                        navigate('/auth');
-                        setIsOpen(false);
-                      }}
-                    >
-                      Sign In
-                    </Button>
-                    <Button 
-                      className="w-full btn-modern bg-primary text-white hover:bg-secondary"
-                      onClick={() => {
-                        navigate('/auth?mode=signup');
-                        setIsOpen(false);
-                      }}
-                    >
-                      Get Started
-                    </Button>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
+        <MobileMenu 
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          session={session}
+          profile={profile}
+        />
       </div>
     </nav>
   );

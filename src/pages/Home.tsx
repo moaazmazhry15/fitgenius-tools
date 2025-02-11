@@ -1,8 +1,10 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Heart, Activity, Weight, Building, Users, Trophy, Star, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import ScheduleMeetingForm from "@/components/forms/ScheduleMeetingForm";
 import { useState } from "react";
 
@@ -60,7 +62,7 @@ const Home = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8">
             <AboutCard
               icon={Building}
               title="Expert Team"
@@ -82,7 +84,7 @@ const Home = () => {
 
       <Separator className="my-8" />
 
-      {/* Features Grid */}
+      {/* Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -93,7 +95,7 @@ const Home = () => {
               Explore our comprehensive suite of fitness calculators designed to help you track, measure, and achieve your health and fitness goals with precision and ease.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {[
               {
                 icon: Calculator,
@@ -120,7 +122,7 @@ const Home = () => {
                 path: "/calculators/bodyfat"
               }
             ].map(({ icon: Icon, title, description, path }) => (
-              <Link key={title} to={path}>
+              <Link key={title} to={path} className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)]">
                 <FeatureCard
                   icon={Icon}
                   title={title}
@@ -146,7 +148,7 @@ const Home = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8">
             <TestimonialCard
               quote="The calculators are so accurate and easy to use. They've helped me stay on track with my fitness goals!"
               author="Sarah Mitchell"
@@ -176,38 +178,41 @@ const Home = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-foreground">
               Frequently Asked <span className="text-primary">Questions</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               Find answers to common questions about our fitness calculators and tools.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {[
-              {
-                question: "How accurate are the calculators?",
-                answer: "Our calculators use scientifically validated formulas and provide highly accurate results when provided with accurate input data."
-              },
-              {
-                question: "How often should I recalculate my metrics?",
-                answer: "We recommend recalculating every 4-6 weeks or whenever there's a significant change in your weight or activity level."
-              },
-              {
-                question: "Can I track my progress over time?",
-                answer: "Yes! Create an account to save your calculations and track your fitness journey progress over time."
-              },
-              {
-                question: "Are the calculations suitable for everyone?",
-                answer: "Our calculators are designed for adults 18-65 years old. Consult with healthcare providers for personalized advice."
-              }
-            ].map(({ question, answer }, index) => (
-              <div 
-                key={index} 
-                className="p-6 rounded-xl bg-card border border-border hover:bg-accent/5 transition-colors"
-              >
-                <h3 className="text-lg font-semibold text-foreground mb-3">{question}</h3>
-                <p className="text-muted-foreground">{answer}</p>
-              </div>
-            ))}
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>How accurate are the calculators?</AccordionTrigger>
+                <AccordionContent>
+                  Our calculators use scientifically validated formulas and provide highly accurate results when provided with accurate input data.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2">
+                <AccordionTrigger>How often should I recalculate my metrics?</AccordionTrigger>
+                <AccordionContent>
+                  We recommend recalculating every 4-6 weeks or whenever there's a significant change in your weight or activity level.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3">
+                <AccordionTrigger>Can I track my progress over time?</AccordionTrigger>
+                <AccordionContent>
+                  Yes! Create an account to save your calculations and track your fitness journey progress over time.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4">
+                <AccordionTrigger>Are the calculations suitable for everyone?</AccordionTrigger>
+                <AccordionContent>
+                  Our calculators are designed for adults 18-65 years old. Consult with healthcare providers for personalized advice.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
 
           <div className="text-center mt-12">

@@ -33,7 +33,7 @@ const Home = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="w-full sm:w-auto text-base sm:text-lg"
+                className="w-full sm:w-auto text-base sm:text-lg rounded-full btn-modern hover:scale-105 transform duration-300"
                 onClick={() => setShowScheduleForm(true)}
               >
                 Get In Touch

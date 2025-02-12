@@ -20,12 +20,12 @@ const FAQSection = ({ onScheduleClick }: FAQSectionProps) => {
           </p>
         </div>
         
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
           <div className="w-full md:w-1/2">
-            <div className="relative h-[400px] w-full rounded-2xl overflow-hidden">
+            <div className="relative h-full w-full rounded-2xl overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
-                alt="Fitness Calculator Interface"
+                src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9"
+                alt="Person tracking fitness with smartwatch"
                 className="object-cover w-full h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />

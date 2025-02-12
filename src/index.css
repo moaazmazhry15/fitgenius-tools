@@ -53,7 +53,7 @@
 
 .btn-modern {
   @apply rounded-full transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 font-bold 
-         bg-primary text-white px-6 py-3 hover:bg-primary/90 hover:shadow-primary/25;
+         bg-primary text-white px-6 py-4 hover:bg-primary/90 hover:shadow-primary/25;
 }
 
 .section-with-grid {
@@ -86,4 +86,3 @@
     @apply bg-gradient-to-br from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent;
   }
 }
-

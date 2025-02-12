@@ -20,15 +20,15 @@ const FAQSection = ({ onScheduleClick }: FAQSectionProps) => {
           </p>
         </div>
         
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
           <div className="w-full md:w-1/2">
-            <div className="relative h-[500px] w-full rounded-2xl overflow-hidden">
+            <div className="relative h-[400px] w-full rounded-2xl overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1552664688-cf412ec27db2"
-                alt="Fitness Calculator Dashboard"
-                className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
+                alt="Fitness Calculator Interface"
+                className="object-cover w-full h-full"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
             </div>
           </div>
 

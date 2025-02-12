@@ -28,7 +28,7 @@ const HeroSection = ({ onScheduleClick }: HeroSectionProps) => {
             </Link>
             <Button 
               size="lg"
-              className="w-full sm:w-auto text-base sm:text-lg rounded-full bg-transparent border-2 border-primary hover:bg-accent hover:border-accent text-primary hover:text-primary-foreground hover:scale-105 transform duration-300"
+              className="w-full sm:w-auto text-base sm:text-lg rounded-full bg-transparent border-2 border-primary hover:bg-accent hover:border-accent text-primary hover:text-primary-foreground hover:scale-105 transform transition-all duration-300 ease-in-out"
               onClick={onScheduleClick}
             >
               Get In Touch <ArrowRight className="ml-2" />

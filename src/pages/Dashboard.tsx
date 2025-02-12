@@ -51,7 +51,7 @@ const Dashboard = () => {
   return (
     <main className="min-h-screen pb-16">
       <div className="container mx-auto px-4 py-24">
-        <div className="flex justify-between items-center mb-8 glass-card animate-fade-in">
+        <div className="flex justify-between items-center mb-8 bg-card/95 backdrop-blur-lg rounded-xl p-6 shadow-lg">
           <h1 className="text-3xl font-bold text-primary">
             Hello, {username}
           </h1>
@@ -61,29 +61,29 @@ const Dashboard = () => {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="glass-card">
+          <div className="bg-card/95 backdrop-blur-lg rounded-xl p-6 shadow-lg">
             <ProfileSection userEmail={userEmail} />
           </div>
-          <div className="glass-card">
+          <div className="bg-card/95 backdrop-blur-lg rounded-xl p-6 shadow-lg">
             <WorkoutSection userId={userId} />
           </div>
         </div>
 
-        <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
-          <div className="glass-card lg:col-span-2">
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-3 mt-6">
+          <div className="bg-card/95 backdrop-blur-lg rounded-xl p-6 shadow-lg lg:col-span-2">
             <MealTracker />
           </div>
           <div className="space-y-6 lg:col-span-1">
-            <div className="glass-card">
+            <div className="bg-card/95 backdrop-blur-lg rounded-xl p-6 shadow-lg">
               <WaterTracker />
             </div>
-            <div className="glass-card">
+            <div className="bg-card/95 backdrop-blur-lg rounded-xl p-6 shadow-lg">
               <GroceryList />
             </div>
           </div>
         </div>
 
-        <div className="glass-card animate-fade-in mb-8">
+        <div className="bg-card/95 backdrop-blur-lg rounded-xl p-6 shadow-lg mt-6">
           <h2 className="text-2xl font-semibold mb-6 text-primary">Your Progress</h2>
           <DashboardCharts userId={userId} />
         </div>

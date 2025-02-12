@@ -24,7 +24,7 @@ const FAQSection = ({ onScheduleClick }: FAQSectionProps) => {
           <div className="w-full md:w-1/2">
             <div className="relative h-[400px] w-full rounded-2xl overflow-hidden">
               <img 
-                src="/photo-1461749280684-dccba630e2f6"
+                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
                 alt="Fitness Calculator Interface"
                 className="object-cover w-full h-full"
               />

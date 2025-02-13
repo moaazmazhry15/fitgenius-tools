@@ -35,7 +35,7 @@ const ScheduleMeetingForm = ({ open, onOpenChange }: ScheduleMeetingFormProps) =
     try {
       console.log('Meeting request data:', formData);
       
-      const response = await fetch('https://moaazmazhry15.app.n8n.cloud/webhook/get-in-touch', {
+      const response = await fetch('https://moaazmazhry15.app.n8n.cloud/webhook-test/get-in-touch', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
